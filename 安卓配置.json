@@ -1,6 +1,5 @@
 {
-	"sites": [
-    {
+	"sites": [{
 		"key": "duoduo",
 		"name": "🟢┃多多网盘",
 		"type": 5,
@@ -14,7 +13,7 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},	
+	},
 	{
 		"key": "wogg",
 		"name": "🟢┃玩偶哥哥",
@@ -67,6 +66,34 @@
 		"filterPlay": "",
 		"firstPlay": "夸克网盘,夸克网盘2",
 		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/mihdr.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "0"
+	},{
+		"key": "ouge",
+		"name": "🟢┃欧歌网盘",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "夸克网盘,夸克网盘2",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/ouge.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "0"
+	},{
+		"key": "cloud189",
+		"name": "🟢┃雷鲸(天翼云盘)",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/189.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
@@ -338,13 +365,64 @@
 		"keepPlayFileKeywords": ""
 	}],
 	"parses": [{
-		"name": "🟢┃解析",
+		"name": "解析1",
+		"type": 0,
+		"url": "https://jx.xmflv.com/?url=",
+		"ext": {
+			"flag": ["bilibili1","qq", "腾讯", "qiyi", "爱奇艺", "奇艺", "youku", "优酷", "mgtv", "芒果", "imgo", "letv", "乐视", "pptv", "PPTV", "sohu", "bilibili", "哔哩哔哩", "哔哩"],
+			"header": {
+				"User-Agent": "okhttp/4.1.0"
+			}
+		}
+	},{
+		"name": "解析2",
+		"type": 0,
+		"url": "https://yparse.ik9.cc/index.php?url=",
+		"ext": {
+			"flag": ["bilibili1","qq", "腾讯", "qiyi", "爱奇艺", "奇艺", "youku", "优酷", "mgtv", "芒果", "imgo", "letv", "乐视", "pptv", "PPTV", "sohu", "bilibili", "哔哩哔哩", "哔哩"],
+			"header": {
+				"User-Agent": "okhttp/4.1.0"
+			}
+		}
+	},{
+		"name": "解析3",
 		"type": 1,
 		"url": "https://pan.qiaoji8.com/tvbox/gouzi.php?url=",
 		"ext": {
 			"flag": ["bilibili1","qq", "腾讯", "qiyi", "爱奇艺", "奇艺", "youku", "优酷", "mgtv", "芒果", "imgo", "letv", "乐视", "pptv", "PPTV", "sohu", "bilibili", "哔哩哔哩", "哔哩"],
 			"header": {
 				"User-Agent": "okhttp/4.1.0"
+			}
+		}
+	},{
+		"name": "mytv解析",
+		"type": 0,
+		"url": "https://pl.qcheng.cc/hktvpc.php?url=",
+		"ext": {
+			"flag": ["mytv", "mytvb"],
+			"header": {
+				"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+                "Referer": "http://www.hktv03.com/"
+			}
+		}
+	},{
+		"name": "iKun解析",
+		"type": 0,
+		"url": "https://www.ikdmjx.com/?url=",
+		"ext": {
+			"flag": ["ikm3u8"],
+			"header": {
+				"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+			}
+		}
+	},{
+		"name": "黑木耳解析",
+		"type": 0,
+		"url": "https://hoplayer.com/index.html?url=",
+		"ext": {
+			"flag": ["heimuer"],
+			"header": {
+				"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
 			}
 		}
 	}],

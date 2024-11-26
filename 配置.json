@@ -1,6 +1,5 @@
 {
-	"sites": [
-	{
+	"sites": [{
 		"key": "duoduo",
 		"name": "🟢┃多多网盘",
 		"type": 5,
@@ -14,7 +13,7 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},
+	},	
 	{
 		"key": "wogg",
 		"name": "🟢┃玩偶哥哥",
@@ -67,6 +66,34 @@
 		"filterPlay": "",
 		"firstPlay": "夸克网盘,夸克网盘2",
 		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/mihdr.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "0"
+	},{
+		"key": "ouge",
+		"name": "🟢┃欧歌网盘",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "夸克网盘,夸克网盘2",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/ouge.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "0"
+	},{
+		"key": "cloud189",
+		"name": "🟢┃雷鲸(天翼云盘)",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/189.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
