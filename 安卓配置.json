@@ -112,7 +112,23 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
         "selectedPlayer":"0"
-	},{
+	},
+	{
+		"key": "kuyun",
+		"name": "🟢┃酷云影视(直链)",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/kuyun.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+        "selectedPlayer":"0"
+	},
+	{
 		"key": "gzys",
 		"name": "🟢┃瓜子影视(直链)",
 		"type": 5,
