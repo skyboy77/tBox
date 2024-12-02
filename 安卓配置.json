@@ -1,13 +1,13 @@
 {
 	"sites": [{
 		"key": "duoduo",
-		"name": "🟢┃多多网盘",
+		"name": "多多网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
 		"firstClass": "",
 		"filterPlay": "",
-		"firstPlay": "夸克网盘,夸克网盘2",
+		"firstPlay": "夸克网盘2,夸克网盘,",
 		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/duoduo.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
@@ -16,7 +16,7 @@
 	},
 	{
 		"key": "wogg",
-		"name": "🟢┃玩偶哥哥",
+		"name": "玩偶哥哥",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -30,7 +30,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "mogg",
-		"name": "🟢┃木偶哥哥(UC)",
+		"name": "木偶哥哥(UC)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -44,7 +44,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "labi",
-		"name": "🟢┃蜡笔网盘",
+		"name": "蜡笔网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -58,7 +58,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "mihdr",
-		"name": "🟢┃至臻网盘(夸克)",
+		"name": "至臻网盘(夸克)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -72,7 +72,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "ouge",
-		"name": "🟢┃欧歌网盘",
+		"name": "欧歌网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -85,8 +85,22 @@
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
 	},{
+		"key": "xiaomi",
+		"name": "小米网盘",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/xiaomi.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "0"
+	},{
 		"key": "cloud189",
-		"name": "🟢┃雷鲸(天翼云盘)",
+		"name": "雷鲸(天翼云盘)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -99,8 +113,22 @@
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
 	},{
+		"key": "jcyjcy",
+		"name": "囧次元(直链)",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/jcy.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+        "selectedPlayer":"0"
+	},{
 		"key": "cfkj86",
-		"name": "🟢┃金牌影院(直链)",
+		"name": "金牌影院(直链)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -112,10 +140,9 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
         "selectedPlayer":"0"
-	},
-	{
+	},{
 		"key": "kuyun",
-		"name": "🟢┃酷云影视(直链)",
+		"name": "酷云影视(直链)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -127,10 +154,23 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
         "selectedPlayer":"0"
-	},
-	{
+	},{
+		"key": "xiaopingguo",
+		"name": "小苹果(1.0.6版)",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "直播",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/xiaopingguo.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+        "selectedPlayer":"1"
+	},{
 		"key": "gzys",
-		"name": "🟢┃瓜子影视(直链)",
+		"name": "瓜子影视(直链)",
 		"type": 5,
 		"searchable": 0,
 		"filterClass": "",
@@ -144,7 +184,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "czzyzl",
-		"name": "🟢┃厂长资源(直链)",
+		"name": "厂长资源(直链)",
 		"type": 5,
 		"searchable": 0,
 		"filterClass": "",
@@ -158,7 +198,7 @@
 		"selectedPlayer": "1"
 	},{
 		"key": "qiyou",
-		"name": "🟢┃奇优影院(直链)",
+		"name": "奇优影院(直链)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -172,7 +212,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "subaibai",
-		"name": "🟢┃素白白影视(直链)",
+		"name": "素白白影视(直链)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -186,7 +226,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "360ys",
-		"name": "🟢┃360影视",
+		"name": "360影视",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -198,8 +238,21 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": ""
 	},{
+		"key": "ruyizy",
+		"name": "如意资源",
+		"type": 0,
+		"searchable": 1,
+		"filterClass": "电影片,连续剧,综艺片,动漫片,伦理片,预告片",
+		"firstClass": "国产剧,香港剧,韩国剧,欧美剧,日本剧,台湾剧,国产动漫,日韩动漫,大陆综艺,港台综艺,日韩综艺,欧美综艺",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "https://cj.rycjapi.com/api.php/provide/vod/from/rym3u8/at/xml/",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": ""
+	},{
 		"key": "82mao",
-		"name": "🟢┃天龙资源",
+		"name": "天龙资源",
 		"type": 1,
 		"searchable": 1,
 		"filterClass": "VIP影片,公告,动漫频道,海外动漫,国产动漫,日韩动漫,欧美动漫,港台动漫,综艺小品,微电影,电视剧场,电影频道,内地综艺,港台综艺,日韩综艺,欧美综艺",
@@ -212,7 +265,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "xiaomaomi",
-		"name": "🟢┃小猫咪资源",
+		"name": "小猫咪资源",
 		"type": 1,
 		"searchable": 1,
 		"filterClass": "短剧,其他,成人,小破站,资讯,影视资讯,明星资讯,演员,内地明星,港台明星,欧美明星,日韩明星,QQ群9342027",
@@ -225,7 +278,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "1080zyku",
-		"name": "🟢┃1080资源",
+		"name": "1080资源",
 		"type": 1,
 		"searchable": 1,
 		"filterClass": "福利,记录片,电影,连续剧,综艺,动漫,预告片,体育,汽车,音乐,搞笑,影视,倫理片",
@@ -237,112 +290,8 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": ""
 	},{
-		"key": "ffzyapi",
-		"name": "🟢┃非凡资源",
-		"type": 0,
-		"searchable": 1,
-		"filterClass": "伦理片,电影片,连续剧,综艺片,",
-		"firstClass": "国产剧,香港剧,韩国剧,国产动漫",
-		"filterPlay": "feifan",
-		"firstPlay": "",
-		"ext": "http://cj.ffzyapi.com/api.php/provide/vod/at/xml/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "hongniuzy2",
-		"name": "🟢┃红牛资源",
-		"type": 1,
-		"searchable": 0,
-		"filterClass": "电影,连续剧,伦理片,体育赛事",
-		"firstClass": "国产剧,港澳剧",
-		"filterPlay": "hnyun",
-		"firstPlay": "hnm3u8",
-		"ext": "https://www.hongniuzy2.com/api.php/provide/vod/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "xinlangapi",
-		"name": "🟢┃新浪资源",
-		"type": 1,
-		"searchable": 0,
-		"filterClass": "电影,电视剧,伦理片,体育",
-		"firstClass": "大陆剧,港澳剧",
-		"filterPlay": "xlyun",
-		"firstPlay": "xlm3u8",
-		"ext": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "apibdzy",
-		"name": "🟢┃百度资源",
-		"type": 1,
-		"searchable": 0,
-		"filterClass": "电影,电视剧,综艺,动漫,邵氏电影,伦理片,体育赛事,资讯,电影资讯,明星资讯,预告",
-		"firstClass": "大陆剧,港澳剧,国产动漫",
-		"filterPlay": "bdyun",
-		"firstPlay": "bdm3u8",
-		"ext": "https://api.apibdzy.com/api.php/provide/vod/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "wolongzyw",
-		"name": "🟢┃卧龙资源",
-		"type": 1,
-		"searchable": 1,
-		"filterClass": "电影片,连续剧,综艺片,动漫片,足球,伦理片,篮球,电影解说",
-		"firstClass": "国产剧,香港剧,国产动漫",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "https://collect.wolongzyw.com/api.php/provide/vod/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "suoniapi",
-		"name": "🟢┃索尼资源",
-		"type": 1,
-		"searchable": 0,
-		"filterClass": "邵氏电影,伦理,写真热舞,西方伦理,日本伦理,影视解说,斯诺克,预告片,足球,篮球,体育赛事,两性课堂,韩国伦理,爽文短剧,电影,电视剧,综艺,动漫,港台三级",
-		"firstClass": "国产剧,港剧,国产动漫",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "https://suoniapi.com/api.php/provide/vod/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "tiankongapi",
-		"name": "🟢┃天空资源",
-		"type": 1,
-		"searchable": 1,
-		"filterClass": "电影,体育赛事,电影解说",
-		"firstClass": "国产剧,香港剧,国产动漫",
-		"filterPlay": "tkyun",
-		"firstPlay": "tkm3u8",
-		"ext": "https://api.tiankongapi.com/api.php/provide/vod/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "wujinapi",
-		"name": "🟢┃无尽资源",
-		"type": 1,
-		"searchable": 1,
-		"filterClass": "短剧,电影,连续剧,综艺,动漫,港台三级,韩国伦理,西方伦理,日本伦理,体育赛事,两性课堂,写真热舞,预告片,足球,影视解说,篮球,邵氏电影,伦理片,头条,公告,资讯",
-		"firstClass": "国产剧,香港剧,国产动漫",
-		"filterPlay": "",
-		"firstPlay": "wjm3u8",
-		"ext": "https://api.wujinapi.me/api.php/provide/vod/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
 		"key": "yunpan",
-		"name": "🟢┃夸克云盘(仅搜索)",
+		"name": "夸克云盘(仅搜索)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -355,7 +304,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "pansou",
-		"name": "🟢┃夸克盘搜(仅搜索)",
+		"name": "夸克盘搜(仅搜索)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -368,7 +317,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "yunpansou",
-		"name": "🟢┃夸克云盘搜(仅搜索)",
+		"name": "夸克云盘搜(仅搜索)",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -381,64 +330,13 @@
 		"keepPlayFileKeywords": ""
 	}],
 	"parses": [{
-		"name": "解析1",
-		"type": 0,
-		"url": "https://jx.xmflv.com/?url=",
-		"ext": {
-			"flag": ["bilibili1","qq", "腾讯", "qiyi", "爱奇艺", "奇艺", "youku", "优酷", "mgtv", "芒果", "imgo", "letv", "乐视", "pptv", "PPTV", "sohu", "bilibili", "哔哩哔哩", "哔哩"],
-			"header": {
-				"User-Agent": "okhttp/4.1.0"
-			}
-		}
-	},{
-		"name": "解析2",
-		"type": 0,
-		"url": "https://yparse.ik9.cc/index.php?url=",
-		"ext": {
-			"flag": ["bilibili1","qq", "腾讯", "qiyi", "爱奇艺", "奇艺", "youku", "优酷", "mgtv", "芒果", "imgo", "letv", "乐视", "pptv", "PPTV", "sohu", "bilibili", "哔哩哔哩", "哔哩"],
-			"header": {
-				"User-Agent": "okhttp/4.1.0"
-			}
-		}
-	},{
-		"name": "解析3",
+		"name": "解析",
 		"type": 1,
 		"url": "https://pan.qiaoji8.com/tvbox/gouzi.php?url=",
 		"ext": {
 			"flag": ["bilibili1","qq", "腾讯", "qiyi", "爱奇艺", "奇艺", "youku", "优酷", "mgtv", "芒果", "imgo", "letv", "乐视", "pptv", "PPTV", "sohu", "bilibili", "哔哩哔哩", "哔哩"],
 			"header": {
 				"User-Agent": "okhttp/4.1.0"
-			}
-		}
-	},{
-		"name": "mytv解析",
-		"type": 0,
-		"url": "https://pl.qcheng.cc/hktvpc.php?url=",
-		"ext": {
-			"flag": ["mytv", "mytvb"],
-			"header": {
-				"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-                "Referer": "http://www.hktv03.com/"
-			}
-		}
-	},{
-		"name": "iKun解析",
-		"type": 0,
-		"url": "https://www.ikdmjx.com/?url=",
-		"ext": {
-			"flag": ["ikm3u8"],
-			"header": {
-				"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
-			}
-		}
-	},{
-		"name": "黑木耳解析",
-		"type": 0,
-		"url": "https://hoplayer.com/index.html?url=",
-		"ext": {
-			"flag": ["heimuer"],
-			"header": {
-				"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
 			}
 		}
 	}],

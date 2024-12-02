@@ -10,7 +10,7 @@
     "首页片单副标题": "name == 'span' && class == 'fed-list-remarks' && text == true",
     "首页片单链接加前缀": "http://m.ting38.com",
     "首页片单链接加后缀": "",
-    "首页片单图片加前缀": "",
+    "首页片单图片加前缀": "http://m.ting38.com",
     "首页片单图片加后缀": "",
     "分类起始页码": "1", 
     "分类链接": "http://m.ting38.com/ting/{cateId}-{catePg}.html",
