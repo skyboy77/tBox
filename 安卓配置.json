@@ -1,19 +1,20 @@
 {
-	"sites": [{
+	"sites": [
+    {
 		"key": "duoduo",
-		"name": "多多网盘",
+		"name": "🐚多多┃网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
 		"firstClass": "",
 		"filterPlay": "",
-		"firstPlay": "夸克网盘2,夸克网盘,",
+		"firstPlay": "夸克网盘2,夸克网盘",
 		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/duoduo.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},
+	},	
 	{
 		"key": "wogg",
 		"name": "玩偶哥哥",
@@ -66,20 +67,6 @@
 		"filterPlay": "",
 		"firstPlay": "夸克网盘,夸克网盘2",
 		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/mihdr.js",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": "",
-		"selectedPlayer": "0"
-	},{
-		"key": "ouge",
-		"name": "欧歌网盘",
-		"type": 5,
-		"searchable": 1,
-		"filterClass": "",
-		"firstClass": "",
-		"filterPlay": "",
-		"firstPlay": "夸克网盘,夸克网盘2",
-		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/ouge.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
@@ -150,6 +137,20 @@
 		"filterPlay": "",
 		"firstPlay": "",
 		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/kuyun.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+        "selectedPlayer":"0"
+	},{
+		"key": "zhuifan",
+		"name": "追饭影视(直链)",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "SVIP4K专线2160P",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/zhuifan.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",

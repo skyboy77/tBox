@@ -1,7 +1,7 @@
 {
 	"sites": [{
 		"key": "duoduo",
-		"name": "多多网盘",
+		"name": "🐚多多┃网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -16,7 +16,7 @@
 	},	
 	{
 		"key": "wogg",
-		"name": "玩偶哥哥",
+		"name": "🧸玩偶┃网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -30,7 +30,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "mogg",
-		"name": "木偶哥哥(UC)",
+		"name": "🤹‍♂️木偶┃UC盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -44,7 +44,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "labi",
-		"name": "蜡笔网盘",
+		"name": "🖍蜡笔┃网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -58,7 +58,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "mihdr",
-		"name": "至臻网盘(夸克)",
+		"name": "💯至臻┃夸克",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -71,22 +71,8 @@
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
 	},{
-		"key": "ouge",
-		"name": "欧歌网盘",
-		"type": 5,
-		"searchable": 1,
-		"filterClass": "",
-		"firstClass": "",
-		"filterPlay": "",
-		"firstPlay": "夸克网盘,夸克网盘2",
-		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/ouge.js",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": "",
-		"selectedPlayer": "0"
-	},{
 		"key": "xiaomi",
-		"name": "小米网盘",
+		"name": "🍚小米┃UC盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -100,7 +86,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "cloud189",
-		"name": "雷鲸(天翼云盘)",
+		"name": "🐋雷鲸┃天翼",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -114,7 +100,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "jcyjcy",
-		"name": "囧次元(直链)",
+		"name": "🍰囧次元┃直链",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -128,7 +114,7 @@
         "selectedPlayer":"0"
 	},{
 		"key": "cfkj86",
-		"name": "金牌影院(直链)",
+		"name": "🥇金牌┃直链",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -142,7 +128,7 @@
         "selectedPlayer":"0"
 	},{
 		"key": "kuyun",
-		"name": "酷云影视(直链)",
+		"name": "☁️酷云┃直链",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -155,8 +141,22 @@
 		"keepPlayFileKeywords": "",
         "selectedPlayer":"0"
 	},{
+		"key": "zhuifan",
+		"name": "🚗追饭┃直链",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "SVIP4K专线2160P",
+		"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/zhuifan.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+        "selectedPlayer":"0"
+	},{
 		"key": "xiaopingguo",
-		"name": "小苹果(1.0.6版)",
+		"name": "🍎苹果┃直链",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "直播",
@@ -170,7 +170,7 @@
         "selectedPlayer":"1"
 	},{
 		"key": "gzys",
-		"name": "瓜子影视(直链)",
+		"name": "🍉瓜子┃直链",
 		"type": 5,
 		"searchable": 0,
 		"filterClass": "",
@@ -184,7 +184,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "czzyzl",
-		"name": "厂长资源(直链)",
+		"name": "🏭厂长┃直链",
 		"type": 5,
 		"searchable": 0,
 		"filterClass": "",
@@ -198,7 +198,7 @@
 		"selectedPlayer": "1"
 	},{
 		"key": "qiyou",
-		"name": "奇优影院(直链)",
+		"name": "🌞奇优┃直链",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -212,7 +212,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "subaibai",
-		"name": "素白白影视(直链)",
+		"name": "🌥素白白┃直链",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -226,7 +226,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "zhenbuka",
-		"name": "真不卡影院(嗅探)",
+		"name": "🚀真不卡┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -239,7 +239,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "zxzja",
-		"name": "在线之家(嗅探)",
+		"name": "🌎在线之家┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -252,7 +252,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "damifan",
-		"name": "大米星球(嗅探)",
+		"name": "🍿大米星球┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -265,7 +265,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "laowang",
-		"name": "老王电影(嗅探)",
+		"name": "🃏老王┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -278,7 +278,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "keke1",
-		"name": "可可影视(嗅探)",
+		"name": "🍹可可┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -291,7 +291,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "pptv66",
-		"name": "皮皮影视(嗅探)",
+		"name": "🥏皮皮┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -304,7 +304,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "qnmp4",
-		"name": "七味影视(嗅探)",
+		"name": "7️⃣七味┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -317,7 +317,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "555dy",
-		"name": "555电影(嗅探)",
+		"name": "5️⃣555电影┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -330,7 +330,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "ysgc",
-		"name": "影视工厂(嗅探)",
+		"name": "🏭影视工厂┃嗅探",
 		"type": 6,
 		"searchable": 0,
 		"filterClass": "",
@@ -343,7 +343,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "auete",
-		"name": "auete影视(嗅探)",
+		"name": "🎐auete影视┃嗅探",
 		"type": 4,
 		"searchable": 0,
 		"filterClass": "",
@@ -356,7 +356,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "shdy2",
-		"name": "骚火电影(嗅探)",
+		"name": "💥骚火┃嗅探",
 		"type": 4,
 		"searchable": 0,
 		"filterClass": "",
@@ -369,7 +369,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "tvby02",
-		"name": "tvb云播(嗅探)",
+		"name": "☁tvb云播┃嗅探",
 		"type": 3,
 		"searchable": 1,
 		"filterClass": "",
@@ -382,7 +382,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "ntdm9",
-		"name": "NT动漫(嗅探)",
+		"name": "🌴NT动漫┃嗅探",
 		"type": 4,
 		"searchable": 1,
 		"filterClass": "",
@@ -395,7 +395,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "dm84",
-		"name": "动漫巴士(嗅探)",
+		"name": "🚌动漫巴士┃嗅探",
 		"type": 2,
 		"searchable": 1,
 		"filterClass": "",
@@ -409,7 +409,7 @@
 		"selectedPlayer": "1"
 	},{
 		"key": "qimiqimi",
-		"name": "奇米动漫(嗅探)",
+		"name": "🍘奇米动漫┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -422,7 +422,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "58dongman",
-		"name": "58动漫(嗅探)",
+		"name": "5️⃣58动漫┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -435,7 +435,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "dmand5",
-		"name": "动漫岛(嗅探)",
+		"name": "🏝动漫岛┃嗅探",
 		"type": 6,
 		"searchable": 1,
 		"filterClass": "",
@@ -448,7 +448,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "360ys",
-		"name": "360影视",
+		"name": "3️⃣360影视┃嗅探",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -461,7 +461,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "ruyizy",
-		"name": "如意资源",
+		"name": "😄如意┃资源",
 		"type": 0,
 		"searchable": 1,
 		"filterClass": "电影片,连续剧,综艺片,动漫片,伦理片,预告片",
@@ -474,7 +474,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "heimuer",
-		"name": "木耳资源",
+		"name": "🖤木耳┃资源",
 		"type": 1,
 		"searchable": 1,
 		"filterClass": "电影,电视剧,动漫,综艺,其它片,新马泰综艺,新马泰动漫,合集短剧,其它动漫,韩国动漫,短剧,同性片",
@@ -488,7 +488,7 @@
 		"selectedPlayer": "0"
 	},{
 		"key": "82mao",
-		"name": "天龙资源",
+		"name": "🐉天龙┃资源",
 		"type": 1,
 		"searchable": 1,
 		"filterClass": "VIP影片,公告,动漫频道,海外动漫,国产动漫,日韩动漫,欧美动漫,港台动漫,综艺小品,微电影,电视剧场,电影频道,内地综艺,港台综艺,日韩综艺,欧美综艺",
@@ -501,7 +501,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "xiaomaomi",
-		"name": "小猫咪资源",
+		"name": "😺小猫咪┃资源",
 		"type": 1,
 		"searchable": 1,
 		"filterClass": "短剧,其他,成人,小破站,资讯,影视资讯,明星资讯,演员,内地明星,港台明星,欧美明星,日韩明星,QQ群9342027",
@@ -514,7 +514,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "1080zyku",
-		"name": "1080资源",
+		"name": "1️⃣1080┃资源",
 		"type": 1,
 		"searchable": 1,
 		"filterClass": "福利,记录片,电影,连续剧,综艺,动漫,预告片,体育,汽车,音乐,搞笑,影视,倫理片",
@@ -527,7 +527,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "yunpan",
-		"name": "夸克云盘(仅搜索)",
+		"name": "夸克云盘┃仅搜索",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -540,7 +540,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "pansou",
-		"name": "夸克盘搜(仅搜索)",
+		"name": "夸克盘搜┃仅搜索",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -553,7 +553,7 @@
 		"keepPlayFileKeywords": ""
 	},{
 		"key": "yunpansou",
-		"name": "夸克云盘搜(仅搜索)",
+		"name": "夸克云盘搜┃仅搜索",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",

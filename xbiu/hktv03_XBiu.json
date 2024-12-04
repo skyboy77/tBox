@@ -37,7 +37,7 @@
 		"url": "http://www.hktv03.com/vod/detail/id/{vid}.html",
 		"vod_play_url": ["btn btn-default\" href=\"", "\"",0,0,3],
 		"vod_play_url_title": [".html\">", "<"],    
-		"vod_play_from": ["极速专线","量子线路","暴风线路","非凡线路","奇艺视频","腾讯视频","优酷视频","B站视频","芒果tv","搜狐视频"]
+		"vod_play_from": ["极速专线","如意线路","量子线路","暴风线路","非凡线路","奇艺视频","腾讯视频","优酷视频","B站视频","芒果tv","搜狐视频"]
 	},
 	"play":{
 		"region":["<html>", "</html>"],
