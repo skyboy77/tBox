@@ -151,7 +151,7 @@ function newfetch(url, options) {
 
 async function homeContent() {
     try {
-    const response = await 访问网页('https://www.cfkj86.com/');
+    const response = await 访问网页('https://hrrcjob.com/');
     const items = 文本_取中间_批量(response, '"vodId', '}', true, true);
     const list = items.map((item) => {
             const vod_name = 文本_取中间(item, 'vodName\\\":\\\"', '\\\"') || '';
@@ -475,7 +475,7 @@ async function categoryContent(tid, pg = 1, extend) {
   try {
     // 解析 extend 参数
     let extendObj = extend ? JSON.parse(extend) : null;
-let url = `https://www.cfkj86.com/vod/show/id/${tid}/type/{type}/class/{class}/area/{area}/year/{year}/sortType/{sortType}/page/${pg}`;
+let url = `https://hrrcjob.com/vod/show/id/${tid}/type/{type}/class/{class}/area/{area}/year/{year}/sortType/{sortType}/page/${pg}`;
 // 替换 URL 中的占位符
 if (extendObj) {
   for (const [key, value] of Object.entries(extendObj)) {
@@ -528,7 +528,7 @@ if (extendObj) {
 
 //获取影视详情信息
 async function detailContent(ids) {
-  const url = `https://www.cfkj86.com/detail/${ids}`;
+  const url = `https://hrrcjob.com/detail/${ids}`;
   try {
     //console.log(url);
     const html = await 访问网页(url);
@@ -599,14 +599,14 @@ async function playerContent(vod_id) {
     const t = new Date().getTime();
     const signkey = 'id='+pid+'&nid='+nid+'&key=cb808529bae6b6be45ecfab29a4889bc&t='+t;
     const key = CryptoJS.SHA1(CryptoJS.MD5(signkey).toString()).toString();
-    const url='https://www.cfkj86.com/api/mw-movie/anonymous/v1/video/episode/url?id='+pid+'&nid='+nid;
+    const url='https://hrrcjob.com/api/mw-movie/anonymous/v1/video/episode/url?id='+pid+'&nid='+nid;
     const response = await 访问网页(url, 0, null, '',`User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36\ndeviceid: c6bce57d-bb62-4db7-96cd-265dfb2a79cf\nsign: ${key}\nt: ${t}`);
 // 解析 JSON 字符串
 const jsonObj = JSON.parse(response);
 const playUrl = jsonObj.data.playUrl;
 const result = {
   parse: 1,
-  header: `Referer: https://www.cfkj86.com`,
+  header: `Referer: https://hrrcjob.com`,
   playUrl: '',
   url: `${playUrl}`,
 };
@@ -628,7 +628,7 @@ return JSON.stringify(result);
 async function searchContent(keyword) {
   try {
         const encodedKeyword = encodeURIComponent(keyword);
-        const url = `https://www.cfkj86.com/vod/search/${encodedKeyword}`;
+        const url = `https://hrrcjob.com/vod/search/${encodedKeyword}`;
         const response = await 访问网页(url);
         const items = 文本_取中间_批量(response, '"vodId', '}', true, true);
         const list = items.map((item) => {
