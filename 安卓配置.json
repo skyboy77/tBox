@@ -1,14 +1,14 @@
 {
 	"sites": [
-    {
+{
 		"key": "duoduo",
-		"name": "🐚多多┃网盘",
+		"name": "🧸多多网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
 		"firstClass": "",
 		"filterPlay": "",
-		"firstPlay": "夸克网盘2,夸克网盘",
+		"firstPlay": "夸克网盘,夸克网盘2",
 		"ext": "./js/duoduo.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
@@ -81,6 +81,20 @@
 		"filterPlay": "",
 		"firstPlay": "",
 		"ext": "./js/xiaomi.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "0"
+	},{
+		"key": "ouge",
+		"name": "欧歌网盘",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "夸克网盘,夸克网盘2",
+		"ext": "./js/ouge.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
