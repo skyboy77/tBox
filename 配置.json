@@ -1,8 +1,8 @@
 {
 	"sites": [
-{
+	{
 		"key": "duoduo",
-		"name": "🐚多多┃网盘",
+		"name": "🍥多多┃网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -14,7 +14,7 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},	
+	},
 	{
 		"key": "wogg",
 		"name": "🧸玩偶┃网盘",
@@ -114,6 +114,20 @@
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
 	},{
+		"key": "6yueting",
+		"name": "6️⃣六月┃听书",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "./js/6yueting.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": ".mp3?ts=,.m4a",
+		"selectedPlayer": "2"
+	},{
 		"key": "jcyjcy",
 		"name": "🍰囧次元┃直链",
 		"type": 5,
@@ -148,7 +162,7 @@
 		"searchable": 1,
 		"filterClass": "",
 		"firstClass": "",
-		"filterPlay": "",
+		"filterPlay": "酷云APP下载:ky1080.top",
 		"firstPlay": "",
 		"ext": "./js/kuyun.js",
 		"flagable": 0,
@@ -197,20 +211,6 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},{
-		"key": "czzyzl",
-		"name": "🏭厂长┃直链",
-		"type": 5,
-		"searchable": 0,
-		"filterClass": "",
-		"firstClass": "国产剧,番剧",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "./js/czzy.js",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": "",
-		"selectedPlayer": "1"
 	},{
 		"key": "qiyou",
 		"name": "🌞奇优┃直链",
@@ -327,19 +327,6 @@
 		"filterPlay": "",
 		"firstPlay": "",
 		"ext": "./soup/qnmp4_soup.json",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "555dy",
-		"name": "5️⃣555电影┃嗅探",
-		"type": 6,
-		"searchable": 1,
-		"filterClass": "",
-		"firstClass": "",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "./soup/555dy_soup.json",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": ""

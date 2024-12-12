@@ -12,7 +12,7 @@
     "首页片单副标题": "selector == 'div.v-item-bottom > span' && index == 1 && text == true",
     "首页片单链接加前缀": "https://www.kkys03.com",
     "首页片单链接加后缀": "",
-    "首页片单图片加前缀": "https://vres.jxlfl.cn",
+    "首页片单图片加前缀": "https://vres.bbpeyi.cn",
     "首页片单图片加后缀": "",
     
     "分类起始页码": "1",
@@ -41,7 +41,7 @@
     "分类片单副标题": "selector == 'div.v-item-bottom > span' && index == 1 && text == true",
     "分类片单链接加前缀": "https://www.kkys03.com",
     "分类片单链接加后缀": "",
-    "分类片单图片加前缀": "https://vres.jxlfl.cn",
+    "分类片单图片加前缀": "https://vres.bbpeyi.cn",
     "分类片单图片加后缀": "",
     
     "搜索请求头参数": "User-Agent$电脑#Referer$https://www.kkys03.com",
@@ -56,7 +56,7 @@
     "搜索片单副标题": "selector == 'div.v-item-bottom > span' && index == 1 && text == true",
     "搜索片单链接加前缀": "https://www.kkys03.com",
     "搜索片单链接加后缀": "",
-    "搜索片单图片加前缀": "https://vres.jxlfl.cn",
+    "搜索片单图片加前缀": "https://vres.bbpeyi.cn",
     "搜索片单图片加后缀": "",
     
     "详情是否Jsoup写法": "1",

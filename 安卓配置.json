@@ -1,8 +1,8 @@
 {
 	"sites": [
-{
+	{
 		"key": "duoduo",
-		"name": "🧸多多网盘",
+		"name": "🍥多多网盘",
 		"type": 5,
 		"searchable": 1,
 		"filterClass": "",
@@ -14,7 +14,7 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},	
+	},
 	{
 		"key": "wogg",
 		"name": "玩偶哥哥",
@@ -197,20 +197,6 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},{
-		"key": "czzyzl",
-		"name": "厂长资源(直链)",
-		"type": 5,
-		"searchable": 0,
-		"filterClass": "",
-		"firstClass": "国产剧,番剧",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "./js/czzy.js",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": "",
-		"selectedPlayer": "1"
 	},{
 		"key": "qiyou",
 		"name": "奇优影院(直链)",

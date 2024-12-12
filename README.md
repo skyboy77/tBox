@@ -5,25 +5,47 @@
 
 ## 规则或APP更新
 
-天翼云盘：搭配1.0.5版以上使用，首次使用在设置中登录天翼云盘及打开一次雷鲸。
+天翼云盘：首次使用在设置中登录天翼云盘及打开一次雷鲸。
 天翼云盘的cookie有IP验证,切换IP后cookie会无效，且ipv4和ipv6的cookie无法混用。建议在电信的WIFI环境下使用(ipv4)。
 如雷鲸无返回数据，请在设置中打开一次该站点，该站点有时需效验。
 
-小苹果影视：搭配1.0.6版以上使用
+### 12月12日：更新1.0.9版，支持听书模式（工作繁忙，安卓端止步1.0.8版）
 
-12月7日：更新1.0.8版本 支持电视直播，在设置中添加m3u直播源。下面是2个例子源，其他m3u直播源请自行在github里搜索。
+配置如下：
+
+"selectedPlayer": "2" 选择音频播放器
+
+"keepPlayFileKeywords": ".mp3?ts=,.m4a" 嗅探链接中包含.mp3?ts=或者.m4a的音频文件
+
+```json
+{
+	"key": "6yueting",
+	"name": "6️⃣六月┃听书",
+	"type": 5,
+	"searchable": 1,
+	"filterClass": "",
+	"firstClass": "",
+	"filterPlay": "",
+	"firstPlay": "",
+	"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/6yueting.js",
+	"flagable": 0,
+	"filterPlayFileKeywords": "",
+	"keepPlayFileKeywords": ".mp3?ts=,.m4a",
+	"selectedPlayer": "2"
+}
+```
 
 ------------------------------------------------------
 该源大部分频道需要ipv6访问
 
-源名称：电视直播
+直播源名称：电视直播
 
 源链接：https://tv.iill.top/m3u/Gather
 
 User-Agent: okHttp
 
 ---------------------------------------------------
-源名称：网络直播
+直播源名称：网络直播
 
 源链接：https://tv.iill.top/m3u/Live
 
