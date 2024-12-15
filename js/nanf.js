@@ -1,4 +1,5 @@
-const webSite= 'https://tv.yydsys.top';
+
+const webSite='http://www.nanf.cc/';
 
 async function toast(msg, seconds = 2) {
     await sendMessage('toast', JSON.stringify({ msg: msg, seconds: seconds }));
@@ -417,7 +418,7 @@ async function toast(msg, seconds = 2) {
        }
        if (tBoxFid) {
          vodData.to_pdir_fid = tBoxFid;
-         await toast("正在获取影片文件信息", 2);
+         await toast('正在清空tBox文件夹内文件...',2);
          if (isQuark) {
            tBoxFileUrl = `https://drive-pc.quark.cn/1/clouddrive/file/sort?pr=ucpro&fr=pc&uc_param_str=&pdir_fid=${tBoxFid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
          } else {
@@ -449,6 +450,7 @@ async function toast(msg, seconds = 2) {
          }
        } else {
          // Step 3: Create tBox folder if not found
+         //await toast('首次运行,自动创建tBox文件夹...',2);
          const createParams = JSON.stringify({
            pdir_fid: "0",
            file_name: "tBox",
@@ -556,9 +558,6 @@ async function toast(msg, seconds = 2) {
          let retryCountForPlay = 0;
          let mySetCookie = null;
 
-
-
-
  const fetchPlayResponse = async (url, params, headers) => {
   return await 访问网页(url, 1, params, cookie, headers, 15000, (setCookie) => {
     mySetCookie = setCookie;
@@ -653,12 +652,6 @@ if (isQuark) {
   }
 }
 
-
-
-
-
-
-
          if (!videoLinks) {
            retryCount++;
            if (retryCount < 5) {
@@ -711,6 +704,28 @@ if (isQuark) {
        console.log(JSON.stringify(result));
        return JSON.stringify(result);
      } catch (error) {
+
+
+    let errorMessage;
+    if (Array.isArray(error)) {
+        errorMessage = error.map(err => {
+            if (typeof err === 'object' && err !== null) {
+                return err.message || JSON.stringify(err, null, 2);
+            } else if (typeof err === 'string') {
+                return err;
+            } else {
+                return String(err);
+            }
+        }).join('\n');
+    } else if (typeof error === 'object' && error !== null) {
+        errorMessage = error.message || JSON.stringify(error, null, 2);
+    } else if (typeof error === 'string') {
+        errorMessage = error;
+    } else {
+        errorMessage = String(error);
+    }
+
+         await toast(`获取影片链接失败: ${errorMessage}`,5);
        //console.error(error);
        const result = {
          parse: 1,
@@ -880,351 +895,81 @@ if (isQuark) {
    
    
    async function homeContent() {
-     try {
-       const url = webSite;
-       const html2 = await 访问网页(url);
-       const html = 文本_取中间(html2, "最新影片</h2>", "</html>");
-       // 使用正则表达式匹配所有的电影项
-       const itemRegex = /<div class="module-item">[\s\S]*?<div class="module-item-text">([\s\S]*?)<\/div>[\s\S]*?<\/div>/g;
-       const items = html.match(itemRegex) || [];
-   
-       // 使用 Set 去重
-       const uniqueItems = new Set();
-       const filteredItems = items.filter(item => {
-         const vod_link = item.match(/<a href="([^"]+)"/)?.[1] || '';
-         if (!uniqueItems.has(vod_link)) {
-           uniqueItems.add(vod_link);
-           return true;
-         }
-         return false;
-       });
-       const list = filteredItems.map((item) => {
-         const vod_name = item.match(/title="([^"]+)"/)?.[1].trim() || '';
-         const vod_pic = item.match(/data-src="([^"]+)"/)?.[1] || '';
-         const vod_link = item.match(/<a href="([^"]+)"/)?.[1] || '';
-         const vod_remarks = item.match(/<div class="module-item-text">(.*?)<\/div>/)?.[1].trim() || '';
-         return {
-           vod_id: vod_link,
-           vod_name: vod_name,
-           vod_remarks: vod_remarks,
-           vod_pic: vod_pic
-         };
-       });
-   
        // 定义分类数据
        const classData = [
-         { "type_id": 1, "type_name": "多多电影" },
-         { "type_id": 2, "type_name": "多多剧集" },
-         { "type_id": 4, "type_name": "动漫" },
-         { "type_id": 3, "type_name": "综艺" },
-         { "type_id": 5, "type_name": "短剧" },
-         { "type_id": 20, "type_name": "纪录" }
+         { "type_id": 2, "type_name": "古装穿越" },
+         { "type_id": 3,  "type_name": "甜宠虐恋" },
+         { "type_id": 5,  "type_name": "世纪重生" },
+         { "type_id": 7,  "type_name": "末世求生" },
+         { "type_id": 1, "type_name": "都市牛人" },
+         { "type_id": 4, "type_name": "灵异惊悚" },
+         { "type_id": 6, "type_name": "修仙玄幻" },
+         { "type_id": 8, "type_name": "海外短剧" }
        ];
    
        // 定义分类数据
        const filterData = {
-         "1": [
-           {
-             "key": "cateId",
-             "name": "剧情",
-             "value": [
-               { "n": "全部", "v": "" },
-               { "n": "动作", "v": "动作" },
-               { "n": "喜剧", "v": "喜剧" },
-               { "n": "爱情", "v": "爱情" },
-               { "n": "科幻", "v": "科幻" },
-               { "n": "恐怖", "v": "恐怖" },
-               { "n": "剧情", "v": "剧情" },
-               { "n": "战争", "v": "战争" },
-               { "n": "警匪", "v": "警匪" },
-               { "n": "古装", "v": "古装" },
-               { "n": "奇幻", "v": "奇幻" },
-               { "n": "犯罪", "v": "犯罪" },
-               { "n": "武侠", "v": "武侠" },
-               { "n": "冒险", "v": "冒险" },
-               { "n": "枪战", "v": "枪战" },
-               { "n": "悬疑", "v": "悬疑" },
-               { "n": "惊悚", "v": "惊悚" },
-               { "n": "历史", "v": "历史" }
-             ]
-           },
-           {
-             "key": "area",
-             "name": "地区",
-             "value": [
-               { "n": "全部", "v": "" },
-               { "n": "大陆", "v": "大陆" },
-               { "n": "香港", "v": "香港" },
-               { "n": "台湾", "v": "台湾" },
-               { "n": "美国", "v": "美国" },
-               { "n": "韩国", "v": "韩国" },
-               { "n": "英国", "v": "英国" },
-               { "n": "日本", "v": "日本" },
-               { "n": "泰国", "v": "泰国" },
-               { "n": "印度", "v": "印度" },
-               { "n": "法国", "v": "法国" },
-               { "n": "其他", "v": "其他" }
-             ]
-           },
-           {
-             "key": "year",
-             "name": "年份",
-             "value": [
-               { "n": "全部", "v": "" },
-               { "n": "2024", "v": "2024" },
-               { "n": "2023", "v": "2023" },
-               { "n": "2022", "v": "2022" },
-               { "n": "2021", "v": "2021" },
-               { "n": "2020", "v": "2020" },
-               { "n": "2019", "v": "2019" },
-               { "n": "2018", "v": "2018" },
-               { "n": "2017", "v": "2017" },
-               { "n": "2016", "v": "2016" },
-               { "n": "2015", "v": "2015" },
-               { "n": "2014", "v": "2014" },
-               { "n": "2013", "v": "2013" },
-               { "n": "2012", "v": "2012" },
-               { "n": "2011", "v": "2011" },
-               { "n": "2010", "v": "2010" }
-             ]
-           },{
-            "key": "letter",
-            "name": "字母",
-            "value": [
-              { "n": "全部", "v": "" },
-              { "n": "A", "v": "A" },
-              { "n": "B", "v": "B" },
-              { "n": "C", "v": "C" },
-              { "n": "D", "v": "D" },
-              { "n": "E", "v": "E" },
-              { "n": "F", "v": "F" },
-              { "n": "G", "v": "G" },
-              { "n": "H", "v": "H" },
-              { "n": "I", "v": "I" },
-              { "n": "J", "v": "J" },
-              { "n": "K", "v": "K" },
-              { "n": "L", "v": "L" },
-              { "n": "M", "v": "M" },
-              { "n": "N", "v": "N" },
-              { "n": "O", "v": "O" },
-              { "n": "P", "v": "P" },
-              { "n": "Q", "v": "Q" },
-              { "n": "R", "v": "R" },
-              { "n": "S", "v": "S" },
-              { "n": "T", "v": "T" },
-              { "n": "U", "v": "U" },
-              { "n": "V", "v": "V" },
-              { "n": "W", "v": "W" },
-              { "n": "X", "v": "X" },
-              { "n": "Y", "v": "Y" },
-              { "n": "Z", "v": "Z" }
-            ]
-          },
-           {
-             "key": "by",
-             "name": "排序",
-             "value": [
-               { "n": "时间", "v": "" },
-               { "n": "人气", "v": "hits" },
-               { "n": "评分", "v": "score" }
-             ]
-           }
-         ],
          "2": [
            {
              "key": "cateId",
              "name": "剧情",
              "value": [
                { "n": "全部", "v": "" },
+               { "n": "爱情", "v": "爱情" },
                { "n": "古装", "v": "古装" },
-               { "n": "战争", "v": "战争" },
-               { "n": "青春偶像", "v": "青春偶像" },
                { "n": "喜剧", "v": "喜剧" },
-               { "n": "家庭", "v": "家庭" },
-               { "n": "犯罪", "v": "犯罪" },
-               { "n": "动作", "v": "动作" },
-               { "n": "奇幻", "v": "奇幻" },
-               { "n": "剧情", "v": "剧情" },
+               { "n": "励志", "v": "励志" },
                { "n": "历史", "v": "历史" },
-               { "n": "经典", "v": "经典" },
-               { "n": "乡村", "v": "乡村" },
-               { "n": "情景", "v": "情景" },
-               { "n": "商战", "v": "商战" },
-               { "n": "网剧", "v": "网剧" },
-               { "n": "其他", "v": "其他" }
-             ]
-           },
-           {
-             "key": "area",
-             "name": "地区",
-             "value": [
-               { "n": "全部", "v": "" },
-               { "n": "内地", "v": "内地" },
-               { "n": "香港", "v": "香港" },
-               { "n": "台湾", "v": "台湾" },
-               { "n": "美国", "v": "美国" },
-               { "n": "韩国", "v": "韩国" },
-               { "n": "英国", "v": "英国" },
-               { "n": "日本", "v": "日本" },
-               { "n": "泰国", "v": "泰国" },
-               { "n": "印度", "v": "印度" },
-               { "n": "其他", "v": "其他" }
-             ]
-           },
-           {
-             "key": "year",
-             "name": "年份",
-             "value": [
-               { "n": "全部", "v": "" },
-               { "n": "2024", "v": "2024" },
-               { "n": "2023", "v": "2023" },
-               { "n": "2022", "v": "2022" },
-               { "n": "2021", "v": "2021" },
-               { "n": "2020", "v": "2020" },
-               { "n": "2019", "v": "2019" },
-               { "n": "2018", "v": "2018" },
-               { "n": "2017", "v": "2017" },
-               { "n": "2016", "v": "2016" },
-               { "n": "2015", "v": "2015" },
-               { "n": "2014", "v": "2014" },
-               { "n": "2013", "v": "2013" },
-               { "n": "2012", "v": "2012" },
-               { "n": "2011", "v": "2011" },
-               { "n": "2010", "v": "2010" }
-             ]
-           },{
-            "key": "letter",
-            "name": "字母",
-            "value": [
-              { "n": "全部", "v": "" },
-              { "n": "A", "v": "A" },
-              { "n": "B", "v": "B" },
-              { "n": "C", "v": "C" },
-              { "n": "D", "v": "D" },
-              { "n": "E", "v": "E" },
-              { "n": "F", "v": "F" },
-              { "n": "G", "v": "G" },
-              { "n": "H", "v": "H" },
-              { "n": "I", "v": "I" },
-              { "n": "J", "v": "J" },
-              { "n": "K", "v": "K" },
-              { "n": "L", "v": "L" },
-              { "n": "M", "v": "M" },
-              { "n": "N", "v": "N" },
-              { "n": "O", "v": "O" },
-              { "n": "P", "v": "P" },
-              { "n": "Q", "v": "Q" },
-              { "n": "R", "v": "R" },
-              { "n": "S", "v": "S" },
-              { "n": "T", "v": "T" },
-              { "n": "U", "v": "U" },
-              { "n": "V", "v": "V" },
-              { "n": "W", "v": "W" },
-              { "n": "X", "v": "X" },
-              { "n": "Y", "v": "Y" },
-              { "n": "Z", "v": "Z" }
-            ]
-          },
-           {
-             "key": "by",
-             "name": "排序",
-             "value": [
-               { "n": "时间", "v": "" },
-               { "n": "人气", "v": "hits" },
-               { "n": "评分", "v": "score" }
-             ]
-           }
-         ],
-         "4": [
-           {
-             "key": "cateId",
-             "name": "剧情",
-             "value": [
-               { "n": "全部", "v": "" },
-               { "n": "情感", "v": "情感" },
-               { "n": "科幻", "v": "科幻" },
-               { "n": "热血", "v": "热血" },
-               { "n": "推理", "v": "推理" },
-               { "n": "搞笑", "v": "搞笑" },
+               { "n": "穿越", "v": "穿越" },
+               { "n": "家庭", "v": "家庭" },
+               { "n": "成长", "v": "成长" },
+               { "n": "宫廷", "v": "宫廷" },
+               { "n": "悬疑", "v": "悬疑" },
+               { "n": "言情", "v": "言情" },
+               { "n": "奇幻", "v": "奇幻" },
                { "n": "冒险", "v": "冒险" },
-               { "n": "萝莉", "v": "萝莉" },
-               { "n": "校园", "v": "校园" },
-               { "n": "动作", "v": "动作" },
-               { "n": "机战", "v": "机战" },
-               { "n": "运动", "v": "运动" },
+               { "n": "权谋", "v": "权谋" },
+               { "n": "商战", "v": "商战" },
+               { "n": "复仇", "v": "复仇" },
+               { "n": "神话", "v": "神话" },
+               { "n": "政治", "v": "政治" },
                { "n": "战争", "v": "战争" },
-               { "n": "少年", "v": "少年" },
-               { "n": "少女", "v": "少女" },
-               { "n": "社会", "v": "社会" },
-               { "n": "原创", "v": "原创" },
-               { "n": "亲子", "v": "亲子" },
-               { "n": "其他", "v": "其他" }
-             ]
-           }, {
-             "key": "area",
-             "name": "地区",
-             "value": [
-               { "n": "全部", "v": "" },
-               { "n": "国产", "v": "国产" },
-               { "n": "欧美", "v": "欧美" },
-               { "n": "日本", "v": "日本" },
-               { "n": "其他", "v": "其他" }
+               { "n": "情感", "v": "情感" }
              ]
            },
            {
-             "key": "year",
-             "name": "年份",
+             "key": "letter",
+             "name": "字母",
              "value": [
                { "n": "全部", "v": "" },
-               { "n": "2024", "v": "2024" },
-               { "n": "2023", "v": "2023" },
-               { "n": "2022", "v": "2022" },
-               { "n": "2021", "v": "2021" },
-               { "n": "2020", "v": "2020" },
-               { "n": "2019", "v": "2019" },
-               { "n": "2018", "v": "2018" },
-               { "n": "2017", "v": "2017" },
-               { "n": "2016", "v": "2016" },
-               { "n": "2015", "v": "2015" },
-               { "n": "2014", "v": "2014" },
-               { "n": "2013", "v": "2013" },
-               { "n": "2012", "v": "2012" },
-               { "n": "2011", "v": "2011" },
-               { "n": "2010", "v": "2010" }
+               { "n": "A", "v": "A" },
+               { "n": "B", "v": "B" },
+               { "n": "C", "v": "C" },
+               { "n": "D", "v": "D" },
+               { "n": "E", "v": "E" },
+               { "n": "F", "v": "F" },
+               { "n": "G", "v": "G" },
+               { "n": "H", "v": "H" },
+               { "n": "I", "v": "I" },
+               { "n": "J", "v": "J" },
+               { "n": "K", "v": "K" },
+               { "n": "L", "v": "L" },
+               { "n": "M", "v": "M" },
+               { "n": "N", "v": "N" },
+               { "n": "O", "v": "O" },
+               { "n": "P", "v": "P" },
+               { "n": "Q", "v": "Q" },
+               { "n": "R", "v": "R" },
+               { "n": "S", "v": "S" },
+               { "n": "T", "v": "T" },
+               { "n": "U", "v": "U" },
+               { "n": "V", "v": "V" },
+               { "n": "W", "v": "W" },
+               { "n": "X", "v": "X" },
+               { "n": "Y", "v": "Y" },
+               { "n": "Z", "v": "Z" }
              ]
-           },{
-            "key": "letter",
-            "name": "字母",
-            "value": [
-              { "n": "全部", "v": "" },
-              { "n": "A", "v": "A" },
-              { "n": "B", "v": "B" },
-              { "n": "C", "v": "C" },
-              { "n": "D", "v": "D" },
-              { "n": "E", "v": "E" },
-              { "n": "F", "v": "F" },
-              { "n": "G", "v": "G" },
-              { "n": "H", "v": "H" },
-              { "n": "I", "v": "I" },
-              { "n": "J", "v": "J" },
-              { "n": "K", "v": "K" },
-              { "n": "L", "v": "L" },
-              { "n": "M", "v": "M" },
-              { "n": "N", "v": "N" },
-              { "n": "O", "v": "O" },
-              { "n": "P", "v": "P" },
-              { "n": "Q", "v": "Q" },
-              { "n": "R", "v": "R" },
-              { "n": "S", "v": "S" },
-              { "n": "T", "v": "T" },
-              { "n": "U", "v": "U" },
-              { "n": "V", "v": "V" },
-              { "n": "W", "v": "W" },
-              { "n": "X", "v": "X" },
-              { "n": "Y", "v": "Y" },
-              { "n": "Z", "v": "Z" }
-            ]
-          },
+           },
            {
              "key": "by",
              "name": "排序",
@@ -1237,38 +982,104 @@ if (isQuark) {
          ],
          "3": [
            {
-             "key": "area",
-             "name": "地区",
+             "key": "cateId",
+             "name": "剧情",
              "value": [
                { "n": "全部", "v": "" },
-               { "n": "内地", "v": "内地" },
-               { "n": "港台", "v": "港台" },
-               { "n": "日韩", "v": "日韩" },
-               { "n": "欧美", "v": "欧美" }
+               { "n": "爱情", "v": "爱情" },
+               { "n": "家庭", "v": "家庭" },
+               { "n": "励志", "v": "励志" },
+               { "n": "成长", "v": "成长" },
+               { "n": "喜剧", "v": "喜剧" },
+               { "n": "悬疑", "v": "悬疑" },
+               { "n": "复仇", "v": "复仇" },
+               { "n": "商战", "v": "商战" },
+               { "n": "古装", "v": "古装" },
+               { "n": "伦理", "v": "伦理" },
+               { "n": "情感", "v": "情感" },
+               { "n": "职场", "v": "职场" },
+               { "n": "青春", "v": "青春" },
+               { "n": "豪门", "v": "豪门" },
+               { "n": "都市", "v": "都市" },
+               { "n": "婚姻", "v": "婚姻" },
+               { "n": "家庭伦理", "v": "家庭伦理" },
+               { "n": "穿越", "v": "穿越" },
+               { "n": "历史", "v": "历史" },
+               { "n": "友情", "v": "友情" }
              ]
            },
            {
-             "key": "year",
-             "name": "年份",
+             "key": "letter",
+             "name": "字母",
              "value": [
                { "n": "全部", "v": "" },
-               { "n": "2024", "v": "2024" },
-               { "n": "2023", "v": "2023" },
-               { "n": "2022", "v": "2022" },
-               { "n": "2021", "v": "2021" },
-               { "n": "2020", "v": "2020" },
-               { "n": "2019", "v": "2019" },
-               { "n": "2018", "v": "2018" },
-               { "n": "2017", "v": "2017" },
-               { "n": "2016", "v": "2016" },
-               { "n": "2015", "v": "2015" },
-               { "n": "2014", "v": "2014" },
-               { "n": "2013", "v": "2013" },
-               { "n": "2012", "v": "2012" },
-               { "n": "2011", "v": "2011" },
-               { "n": "2010", "v": "2010" }
+               { "n": "A", "v": "A" },
+               { "n": "B", "v": "B" },
+               { "n": "C", "v": "C" },
+               { "n": "D", "v": "D" },
+               { "n": "E", "v": "E" },
+               { "n": "F", "v": "F" },
+               { "n": "G", "v": "G" },
+               { "n": "H", "v": "H" },
+               { "n": "I", "v": "I" },
+               { "n": "J", "v": "J" },
+               { "n": "K", "v": "K" },
+               { "n": "L", "v": "L" },
+               { "n": "M", "v": "M" },
+               { "n": "N", "v": "N" },
+               { "n": "O", "v": "O" },
+               { "n": "P", "v": "P" },
+               { "n": "Q", "v": "Q" },
+               { "n": "R", "v": "R" },
+               { "n": "S", "v": "S" },
+               { "n": "T", "v": "T" },
+               { "n": "U", "v": "U" },
+               { "n": "V", "v": "V" },
+               { "n": "W", "v": "W" },
+               { "n": "X", "v": "X" },
+               { "n": "Y", "v": "Y" },
+               { "n": "Z", "v": "Z" }
              ]
-           },{
+           },
+           {
+             "key": "by",
+             "name": "排序",
+             "value": [
+               { "n": "时间", "v": "" },
+               { "n": "人气", "v": "hits" },
+               { "n": "评分", "v": "score" }
+             ]
+           }
+         ],
+         "5": [
+           {
+             "key": "cateId",
+             "name": "剧情",
+             "value": [
+                { "n": "全部", "v": "" },
+                { "n": "爱情", "v": "爱情" },
+                { "n": "励志", "v": "励志" },
+                { "n": "家庭", "v": "家庭" },
+                { "n": "喜剧", "v": "喜剧" },
+                { "n": "成长", "v": "成长" },
+                { "n": "复仇", "v": "复仇" },
+                { "n": "古装", "v": "古装" },
+                { "n": "悬疑", "v": "悬疑" },
+                { "n": "青春", "v": "青春" },
+                { "n": "商战", "v": "商战" },
+                { "n": "科幻", "v": "科幻" },
+                { "n": "穿越", "v": "穿越" },
+                { "n": "历史", "v": "历史" },
+                { "n": "情感", "v": "情感" },
+                { "n": "剧情", "v": "剧情" },
+                { "n": "冒险", "v": "冒险" },
+                { "n": "重生", "v": "重生" },
+                { "n": "言情", "v": "言情" },
+                { "n": "奇幻", "v": "奇幻" },
+                { "n": "都市", "v": "都市" },
+             ]
+           },
+           {
             "key": "letter",
             "name": "字母",
             "value": [
@@ -1311,61 +1122,319 @@ if (isQuark) {
              ]
            }
          ],
-         "5": [           {
-             "key": "year",
-             "name": "年份",
+         "7": [
+            {
+                "key": "cateId",
+                "name": "剧情",
+                "value": [
+                   { "n": "全部", "v": "" },
+                   { "n": "爱情", "v": "爱情" },
+                   { "n": "科幻", "v": "科幻" },
+                   { "n": "喜剧", "v": "喜剧" },
+                   { "n": "悬疑", "v": "悬疑" },
+                   { "n": "冒险", "v": "冒险" },
+                   { "n": "励志", "v": "励志" },
+                   { "n": "惊悚", "v": "惊悚" },
+                   { "n": "动作", "v": "动作" },
+                   { "n": "末世", "v": "末世" },
+                   { "n": "灾难", "v": "灾难" },
+                   { "n": "生存", "v": "生存" },
+                   { "n": "奇幻", "v": "奇幻" },
+                   { "n": "推理", "v": "推理" },
+                   { "n": "末世题材", "v": "末世题材" },
+                   { "n": "末日", "v": "末日" },
+                   { "n": "金融", "v": "金融" },
+                   { "n": "人际关系", "v": "人际关系" },
+                   { "n": "伦理", "v": "伦理" },
+                   { "n": "创新", "v": "创新" },
+                   { "n": "剧情", "v": "剧情" }
+                ]
+              },
+           {
+             "key": "letter",
+             "name": "字母",
              "value": [
                { "n": "全部", "v": "" },
-               { "n": "2024", "v": "2024" },
-               { "n": "2023", "v": "2023" },
-               { "n": "2022", "v": "2022" },
-               { "n": "2021", "v": "2021" },
-               { "n": "2020", "v": "2020" },
-               { "n": "2019", "v": "2019" },
-               { "n": "2018", "v": "2018" },
-               { "n": "2017", "v": "2017" },
-               { "n": "2016", "v": "2016" },
-               { "n": "2015", "v": "2015" },
-               { "n": "2014", "v": "2014" },
-               { "n": "2013", "v": "2013" },
-               { "n": "2012", "v": "2012" },
-               { "n": "2011", "v": "2011" },
-               { "n": "2010", "v": "2010" }
+               { "n": "A", "v": "A" },
+               { "n": "B", "v": "B" },
+               { "n": "C", "v": "C" },
+               { "n": "D", "v": "D" },
+               { "n": "E", "v": "E" },
+               { "n": "F", "v": "F" },
+               { "n": "G", "v": "G" },
+               { "n": "H", "v": "H" },
+               { "n": "I", "v": "I" },
+               { "n": "J", "v": "J" },
+               { "n": "K", "v": "K" },
+               { "n": "L", "v": "L" },
+               { "n": "M", "v": "M" },
+               { "n": "N", "v": "N" },
+               { "n": "O", "v": "O" },
+               { "n": "P", "v": "P" },
+               { "n": "Q", "v": "Q" },
+               { "n": "R", "v": "R" },
+               { "n": "S", "v": "S" },
+               { "n": "T", "v": "T" },
+               { "n": "U", "v": "U" },
+               { "n": "V", "v": "V" },
+               { "n": "W", "v": "W" },
+               { "n": "X", "v": "X" },
+               { "n": "Y", "v": "Y" },
+               { "n": "Z", "v": "Z" }
+             ]
+           },
+           {
+             "key": "by",
+             "name": "排序",
+             "value": [
+               { "n": "时间", "v": "" },
+               { "n": "人气", "v": "hits" },
+               { "n": "评分", "v": "score" }
+             ]
+           }
+         ],
+         "1": [
+            {
+                "key": "cateId",
+                "name": "剧情",
+                "value": [
+                  { "n": "全部", "v": "" },
+                  { "n": "爱情", "v": "爱情" },
+                  { "n": "励志", "v": "励志" },
+                  { "n": "家庭", "v": "家庭" },
+                  { "n": "喜剧", "v": "喜剧" },
+                  { "n": "古装", "v": "古装" },
+                  { "n": "成长", "v": "成长" },
+                  { "n": "悬疑", "v": "悬疑" },
+                  { "n": "冒险", "v": "冒险" },
+                  { "n": "历史", "v": "历史" },
+                  { "n": "奇幻", "v": "奇幻" },
+                  { "n": "动作", "v": "动作" },
+                  { "n": "神话", "v": "神话" },
+                  { "n": "商战", "v": "商战" },
+                  { "n": "情感", "v": "情感" },
+                  { "n": "武侠", "v": "武侠" },
+                  { "n": "剧情", "v": "剧情" },
+                  { "n": "医疗", "v": "医疗" },
+                  { "n": "都市", "v": "都市" },
+                  { "n": "职场", "v": "职场" },
+                  { "n": "家庭伦理", "v": "家庭伦理" },
+                  { "n": "战争", "v": "战争" },
+                  { "n": "青春", "v": "青春" },
+                  { "n": "推理", "v": "推理" },
+                  { "n": "复仇", "v": "复仇" },
+                  { "n": "犯罪", "v": "犯罪" },
+                  { "n": "修真", "v": "修真" }
+                ]
+              },
+           {
+             "key": "letter",
+             "name": "字母",
+             "value": [
+               { "n": "全部", "v": "" },
+               { "n": "A", "v": "A" },
+               { "n": "B", "v": "B" },
+               { "n": "C", "v": "C" },
+               { "n": "D", "v": "D" },
+               { "n": "E", "v": "E" },
+               { "n": "F", "v": "F" },
+               { "n": "G", "v": "G" },
+               { "n": "H", "v": "H" },
+               { "n": "I", "v": "I" },
+               { "n": "J", "v": "J" },
+               { "n": "K", "v": "K" },
+               { "n": "L", "v": "L" },
+               { "n": "M", "v": "M" },
+               { "n": "N", "v": "N" },
+               { "n": "O", "v": "O" },
+               { "n": "P", "v": "P" },
+               { "n": "Q", "v": "Q" },
+               { "n": "R", "v": "R" },
+               { "n": "S", "v": "S" },
+               { "n": "T", "v": "T" },
+               { "n": "U", "v": "U" },
+               { "n": "V", "v": "V" },
+               { "n": "W", "v": "W" },
+               { "n": "X", "v": "X" },
+               { "n": "Y", "v": "Y" },
+               { "n": "Z", "v": "Z" }
+             ]
+           },
+           {
+             "key": "by",
+             "name": "排序",
+             "value": [
+               { "n": "时间", "v": "" },
+               { "n": "人气", "v": "hits" },
+               { "n": "评分", "v": "score" }
+             ]
+           }
+         ],
+         "4": [
+            {
+                "key": "cateId",
+                "name": "剧情",
+                "value": [
+                  { "n": "全部", "v": "" },
+                  { "n": "悬疑", "v": "悬疑" },
+                  { "n": "爱情", "v": "爱情" },
+                  { "n": "惊悚", "v": "惊悚" },
+                  { "n": "古装", "v": "古装" },
+                  { "n": "喜剧", "v": "喜剧" },
+                  { "n": "奇幻", "v": "奇幻" },
+                  { "n": "神秘", "v": "神秘" },
+                  { "n": "冒险", "v": "冒险" },
+                  { "n": "家庭", "v": "家庭" },
+                  { "n": "神话", "v": "神话" },
+                  { "n": "励志", "v": "励志" },
+                  { "n": "推理", "v": "推理" },
+                  { "n": "剧情", "v": "剧情" },
+                  { "n": "恐怖", "v": "恐怖" },
+                  { "n": "伦理", "v": "伦理" },
+                  { "n": "情感", "v": "情感" },
+                  { "n": "成长", "v": "成长" },
+                  { "n": "动作", "v": "动作" },
+                  { "n": "武侠", "v": "武侠" },
+                  { "n": "法律", "v": "法律" }
+                ]
+              },
+           {
+             "key": "letter",
+             "name": "字母",
+             "value": [
+               { "n": "全部", "v": "" },
+               { "n": "A", "v": "A" },
+               { "n": "B", "v": "B" },
+               { "n": "C", "v": "C" },
+               { "n": "D", "v": "D" },
+               { "n": "E", "v": "E" },
+               { "n": "F", "v": "F" },
+               { "n": "G", "v": "G" },
+               { "n": "H", "v": "H" },
+               { "n": "I", "v": "I" },
+               { "n": "J", "v": "J" },
+               { "n": "K", "v": "K" },
+               { "n": "L", "v": "L" },
+               { "n": "M", "v": "M" },
+               { "n": "N", "v": "N" },
+               { "n": "O", "v": "O" },
+               { "n": "P", "v": "P" },
+               { "n": "Q", "v": "Q" },
+               { "n": "R", "v": "R" },
+               { "n": "S", "v": "S" },
+               { "n": "T", "v": "T" },
+               { "n": "U", "v": "U" },
+               { "n": "V", "v": "V" },
+               { "n": "W", "v": "W" },
+               { "n": "X", "v": "X" },
+               { "n": "Y", "v": "Y" },
+               { "n": "Z", "v": "Z" }
+             ]
+           },
+           {
+             "key": "by",
+             "name": "排序",
+             "value": [
+               { "n": "时间", "v": "" },
+               { "n": "人气", "v": "hits" },
+               { "n": "评分", "v": "score" }
+             ]
+           }
+         ],
+         "6": [
+            {
+                "key": "cateId",
+                "name": "剧情",
+                "value": [
+                  { "n": "全部", "v": "" },
+                  { "n": "爱情", "v": "爱情" },
+                  { "n": "古装", "v": "古装" },
+                  { "n": "神话", "v": "神话" },
+                  { "n": "励志", "v": "励志" },
+                  { "n": "奇幻", "v": "奇幻" },
+                  { "n": "喜剧", "v": "喜剧" },
+                  { "n": "冒险", "v": "冒险" },
+                  { "n": "家庭", "v": "家庭" },
+                  { "n": "成长", "v": "成长" },
+                  { "n": "悬疑", "v": "悬疑" },
+                  { "n": "武侠", "v": "武侠" },
+                  { "n": "仙侠", "v": "仙侠" },
+                  { "n": "医疗", "v": "医疗" },
+                  { "n": "动作", "v": "动作" },
+                  { "n": "修真", "v": "修真" },
+                  { "n": "历史", "v": "历史" },
+                  { "n": "都市", "v": "都市" },
+                  { "n": "情感", "v": "情感" },
+                  { "n": "伦理", "v": "伦理" },
+                  { "n": "惊悚", "v": "惊悚" }
+                ]
+              },
+           {
+             "key": "letter",
+             "name": "字母",
+             "value": [
+               { "n": "全部", "v": "" },
+               { "n": "A", "v": "A" },
+               { "n": "B", "v": "B" },
+               { "n": "C", "v": "C" },
+               { "n": "D", "v": "D" },
+               { "n": "E", "v": "E" },
+               { "n": "F", "v": "F" },
+               { "n": "G", "v": "G" },
+               { "n": "H", "v": "H" },
+               { "n": "I", "v": "I" },
+               { "n": "J", "v": "J" },
+               { "n": "K", "v": "K" },
+               { "n": "L", "v": "L" },
+               { "n": "M", "v": "M" },
+               { "n": "N", "v": "N" },
+               { "n": "O", "v": "O" },
+               { "n": "P", "v": "P" },
+               { "n": "Q", "v": "Q" },
+               { "n": "R", "v": "R" },
+               { "n": "S", "v": "S" },
+               { "n": "T", "v": "T" },
+               { "n": "U", "v": "U" },
+               { "n": "V", "v": "V" },
+               { "n": "W", "v": "W" },
+               { "n": "X", "v": "X" },
+               { "n": "Y", "v": "Y" },
+               { "n": "Z", "v": "Z" }
              ]
            },{
-            "key": "letter",
-            "name": "字母",
-            "value": [
-              { "n": "全部", "v": "" },
-              { "n": "A", "v": "A" },
-              { "n": "B", "v": "B" },
-              { "n": "C", "v": "C" },
-              { "n": "D", "v": "D" },
-              { "n": "E", "v": "E" },
-              { "n": "F", "v": "F" },
-              { "n": "G", "v": "G" },
-              { "n": "H", "v": "H" },
-              { "n": "I", "v": "I" },
-              { "n": "J", "v": "J" },
-              { "n": "K", "v": "K" },
-              { "n": "L", "v": "L" },
-              { "n": "M", "v": "M" },
-              { "n": "N", "v": "N" },
-              { "n": "O", "v": "O" },
-              { "n": "P", "v": "P" },
-              { "n": "Q", "v": "Q" },
-              { "n": "R", "v": "R" },
-              { "n": "S", "v": "S" },
-              { "n": "T", "v": "T" },
-              { "n": "U", "v": "U" },
-              { "n": "V", "v": "V" },
-              { "n": "W", "v": "W" },
-              { "n": "X", "v": "X" },
-              { "n": "Y", "v": "Y" },
-              { "n": "Z", "v": "Z" }
-            ]
-          },
-           {
+             "key": "by",
+             "name": "排序",
+             "value": [
+               { "n": "时间", "v": "" },
+               { "n": "人气", "v": "hits" },
+               { "n": "评分", "v": "score" }
+             ]
+           }
+         ],
+         "8": [
+            {
+                "key": "cateId",
+                "name": "剧情",
+                "value": [
+                  { "n": "全部", "v": "" },
+                  { "n": "古装", "v": "古装" },
+                  { "n": "战争", "v": "战争" },
+                  { "n": "青春偶像", "v": "青春偶像" },
+                  { "n": "喜剧", "v": "喜剧" },
+                  { "n": "家庭", "v": "家庭" },
+                  { "n": "犯罪", "v": "犯罪" },
+                  { "n": "动作", "v": "动作" },
+                  { "n": "奇幻", "v": "奇幻" },
+                  { "n": "剧情", "v": "剧情" },
+                  { "n": "历史", "v": "历史" },
+                  { "n": "经典", "v": "经典" },
+                  { "n": "乡村", "v": "乡村" },
+                  { "n": "情景", "v": "情景" },
+                  { "n": "商战", "v": "商战" },
+                  { "n": "网剧", "v": "网剧" },
+                  { "n": "其他", "v": "其他" }
+                ]
+              },{
              "key": "by",
              "name": "排序",
              "value": [
@@ -1382,20 +1451,9 @@ if (isQuark) {
          msg: "数据列表",
          page: "1",
          limit: "20",
-         list: list,
          class: classData,
          filters: filterData
        });
-     } catch (error) {
-       console.error('Error fetching the webpage:', error);
-       return JSON.stringify({
-         code: -1,
-         msg: "获取数据失败",
-         page: "1",
-         limit: "20",
-         list: []
-       });
-     }
    }
    
    
@@ -1403,14 +1461,14 @@ if (isQuark) {
    async function searchContent(keyword) {
        try {
            const encodedKeyword = encodeURIComponent(keyword);
-           const url = `${webSite}/index.php/vod/search.html?wd=${encodedKeyword}`;
+           const url = `${webSite}/djsearch/${encodedKeyword}-------------.html`;
            const html = await 访问网页(url);
-           const items = 文本_取中间_批量(html,'<div class="module-search-item">','<div class="video-info-footer">');
+           const items = 文本_取中间_批量(html,'<li class="col8">','</li>');
            const list = items.map((item) => {
-               const vod_name = 文本_取中间( 文本_取中间(item,'<a class="video-serial"','/a>'),'title="','"') || '';
-               const vod_pic = 文本_取中间(item,'data-src="','"') || '';
-               const vod_id = 文本_取中间( 文本_取中间(item,'<a class="video-serial"','/a>'),'href="','"') || '';
-               const vod_remarks = 文本_取中间( 文本_取中间(item,'<a class="video-serial"','/a>'),'">','<') || '';
+               const vod_name = 文本_取中间(item,'title="','"') || '';
+               const vod_pic = 文本_取中间(item,'data-original="','"') || '';
+               const vod_id = 文本_取中间(item,'href="','"') || '';
+               const vod_remarks = 文本_取中间(item,'<p class="text">','</p>') || '';
                return {
                    vod_id: vod_id,
                    vod_name: vod_name,
@@ -1437,13 +1495,10 @@ if (isQuark) {
        }
    }
    // 使用示例
-   //searchContent('斗罗大陆').then(data => {
+   //searchContent('我的').then(data => {
    //    console.log(data);
    //});
    
-   async function test() {
-       return "hello world";
-   }
    //homeContent()
    //  .then(data => console.log(data))
    //  .catch(error => console.error('Error:', error));
@@ -1452,33 +1507,29 @@ if (isQuark) {
    async function categoryContent(tid, pg = 1, extend) {
      try {
        // 解析 extend 参数
-    let extendObj = extend ? JSON.parse(extend) : null;
-    let url = `${webSite}/index.php/vod/show/area/{area}/by/{by}/class/{cateId}/id/${tid}/page/${pg}/letter/{letter}/year/{year}.html`;
-    // 替换 URL 中的占位符
-    if (extendObj) {
-      for (const [key, value] of Object.entries(extendObj)) {
-          if(value){
-        const placeholder = `{${key}}`;
-        const encodedValue = encodeURIComponent(value || ''); // 对 value 进行 URL 编码
-      // 如果 value 不为空，替换占位符
-      url = url.replace(new RegExp(placeholder, 'g'), encodedValue); 
-          }
-      }
-    }
-    // 删除剩余的 {} 包围的占位符
-    url = url.replace(/\/[a-zA-Z]+\/\{[a-zA-Z]+\}/g, '');
-
+       let extendObj = extend ? JSON.parse(extend) : null;
+       let url = `${webSite}/djshow/${tid}-{area}-{by}-{cateId}--{letter}---${pg}---{year}.html`;
+       // 替换 URL 中的占位符
+       if (extendObj) {
+         for (const [key, value] of Object.entries(extendObj)) {
+           const placeholder = `{${key}}`;
+           const encodedValue = encodeURIComponent(value || ''); // 对 value 进行 URL 编码
+           url = url.replace(new RegExp(placeholder, 'g'), encodedValue);
+         }
+       }
+       // 删除剩余的 {} 包围的占位符
+       url = url.replace(/{(.*?)}/g, '');
        console.log(url);
        const html = await 访问网页(url);
        // 使用正则表达式匹配所有的电影项
-       const itemRegex = /<div class="module-item">[\s\S]*?<div class="module-item-text">([\s\S]*?)<\/div>[\s\S]*?<\/div>/g;
+       const itemRegex = /<li class="col8">([\s\S]*?)<\/li>/g;
        const items = html.match(itemRegex) || [];
        const list = items.map((item) => {
          console.log(item);
          const vod_name = item.match(/title="([^"]+)"/)?.[1].trim() || '';
-         const vod_pic = item.match(/data-src="([^"]+)"/)?.[1] || '';
-         const vod_link = item.match(/<a href="([^"]+)"/)?.[1] || '';
-         const vod_remarks = item.match(/<div class="module-item-text">(.*?)<\/div>/)?.[1].trim() || '';
+         const vod_pic = item.match(/data-original="([^"]+)"/)?.[1] || '';
+         const vod_link = item.match(/ href="([^"]+)"/)?.[1] || '';
+         const vod_remarks = vod_name.match(/(\d+)集/)?.[0]?.trim() || '';
          return {
            vod_id: vod_link,
            vod_name: vod_name,
@@ -1504,120 +1555,115 @@ if (isQuark) {
        });
      }
    }
-   //categoryContent('2',2)
+   //categoryContent('2',1)
    //  .then(data => console.log(data))
    //  .catch(error => console.error('Error:', error));
    
-   //获取影视详情信息
-  //获取影视详情信息
-async function detailContent(ids) {
-  const url = `${webSite}${ids}`;
-  try {
-    //console.log(url);
-    await toast('正在加载影片信息',2);
-    const html = await 访问网页(url);
-    // 使用正则表达式提取信息
-    const vod_id = ids;
-    const vod_name = html.match(/<h1 class="page-title">(.*?)<\/h1>/)[1] || '未知片名';
-        //console.log(vod_name);
-    const vod_year = 文本_取中间(文本_取中间(html, '年代：</span>', '/a>'), '_blank">', '<') || '';
-    //console.log(vod_year);
-    const vod_director = 移除html代码(html.match(/<div class="video-info-items"><span class="video-info-itemtitle">导演：<\/span>([\s\S]*?)<\/div>/)[1].trim()) || '未知';
-     //console.log(vod_director);
-    const vod_actor = 移除html代码(html.match(/<div class="video-info-items"><span class="video-info-itemtitle">主演：<\/span>([\s\S]*?)<\/div>/)[1].trim()) || '未知';
-    //console.log(vod_actor);
-    const vod_pic = html.match(/<img class="lazyload" data-src="(.*?)"/)[1] || '';
-    //console.log(vod_pic);
-    let vod_remarks='';
-    if(html.indexOf('备注：</span>') !== -1){
-    vod_remarks = 文本_取中间(文本_取中间(html, '备注：</span>', '/div>'), 'info-item">', '<') || '';
-    }else if(html.indexOf('集数：</span>') !== -1){
-        vod_remarks = 文本_取中间(文本_取中间(html, '集数：</span>', '/div>'), 'info-item">', '<') || '';
-    }
-     //console.log(vod_remarks);
-    const vod_content = 移除html代码(文本_取中间(html, '<p class="sqjj_a" style="display: none;">', '<span class="sq_jj red">')) || '暂无剧情';
-    //console.log(vod_content);
-    const cloudLinks = html.match(/<a class="btn-pc btn-down" href="(.*?)"/g).map(link => link.replace(/<a class="btn-pc btn-down" href="/, '').replace(/" title=".*?">/g, '')) || [];
-    //console.log(cloudLinks);
-    // 初始化 vod_play_from 和 vod_play_url
-    let vod_play_from = [];
-    let vod_play_url = [];
-    // 记录云盘名称的使用次数
-    const cloudNameCount = {};
-    await toast('正在加载网盘剧集信息',2);
-for (let i = 0; i < cloudLinks.length; i++) {
-  const link = cloudLinks[i];
-  if (link.includes('uc.cn') || link.includes('quark.cn')) {
-    const result = await fetchVideoFiles(link); // 所有播放链接对应 vod_play_url
-    
-    if (result) { // 检查 result 是否为空
-      const baseCloudName = link.includes('uc.cn') ? 'UC网盘' : '夸克网盘'; // 对应 vod_play_from
 
-      // 检查云盘名称是否已经使用过
-      if (cloudNameCount[baseCloudName] === undefined) {
-        cloudNameCount[baseCloudName] = 1;
-        vod_play_from.push(baseCloudName);
-      } else {
-        cloudNameCount[baseCloudName]++;
-        vod_play_from.push(`${baseCloudName}${cloudNameCount[baseCloudName]}`);
-      }
-
-      vod_play_url.push(result);
-    }
-  }
-}
-    // 将提取的信息组织成一个对象
-    const movieDetails = {
-      code: 1,
-      msg: "数据列表",
-      page: 1,
-      pagecount: 1,
-      limit: "20",
-      total: 1,
-      list: [{
-        vod_id: vod_id,
-        vod_name: vod_name,
-        vod_pic: vod_pic,
-        vod_actor: vod_actor,
-        vod_director: vod_director,
-        vod_remarks: vod_remarks,
-        vod_year: vod_year,
-        vod_content: vod_content,
-        vod_play_from: vod_play_from.join('$$$'),
-        vod_play_url: vod_play_url.join('$$$')
-      }]
-    };
-
-    // 处理 vod_play_from 和 vod_play_url
-    const playFromList = movieDetails.list[0].vod_play_from.split('$$$');
-    const playUrlList = movieDetails.list[0].vod_play_url.split('$$$');
-
-    const filteredPlayFromList = [];
-    const filteredPlayUrlList = [];
-
-    for (let i = 0; i < playUrlList.length; i++) {
-      if (!playUrlList[i].includes('该网盘已取消了分享')) {
-        filteredPlayFromList.push(playFromList[i]);
-        filteredPlayUrlList.push(playUrlList[i]);
-      }
-    }
-
-    movieDetails.list[0].vod_play_from = filteredPlayFromList.join('$$$');
-    movieDetails.list[0].vod_play_url = filteredPlayUrlList.join('$$$');
-
-    // 返回 JSON 字符串
-    console.log(JSON.stringify(movieDetails));
-    return JSON.stringify(movieDetails);
-  } catch (error) {
-    console.error('Error fetching movie details:', error);
-    return JSON.stringify({ code: 0, msg: "获取数据失败", error: error.message });
-  }
-}
-
-   
-   //detailContent('/voddetail/85273.html')
-    // .then(data => console.log(data))
+   //detailContent('/djinfo/xiaoxiaochuniangbuhaore64jiquanlishiraoampshixuejing.html')
+   //  .then(data => console.log(data))
    //  .catch(error => console.error('Error:', error));
+
+   //获取影视详情信息
+   async function detailContent(ids) {
+     const url = `${webSite}${ids}`;
+     try {
+       //console.log(url);
+       //await toast('正在加载影片详情页',2);
+       const html = await 访问网页(url);
+       // 使用正则表达式提取信息
+       const vod_id = ids;
+       const vod_name = 文本_取中间(html, '<div class="shoutu-media-bd"><h1>', '</h1>').replace(/amp;/g,'') || '未知片名';
+        console.log(vod_name);
+       const vod_year = '';
+       //console.log(vod_year);
+       const vod_director = 文本_取中间(html, '<div>导演：', '</div>') || '未知';
+        //console.log(vod_director);
+       const vod_actor = 文本_取中间(html, '<div>主演：', '</div>') || '未知';
+       //console.log(vod_actor);
+       const vod_pic = 文本_取中间(html, '<img class="lazyload" data-original="', '"') || '';
+       //console.log(vod_pic);
+       let vod_remarks='';
+        //console.log(vod_remarks);
+       const vod_content = 移除html代码(文本_取中间(html, '简介：</span>', '<')) || '暂无剧情';
+       //console.log(vod_content);
+       const cloudLinks = html.match(/<a class="btn btn-radius btn-main1" href="(.*?)"/g).map(link => link.replace(/<a class="btn btn-radius btn-main1" href="/, '').replace(/"/g, '')) || [];
+       //console.log(cloudLinks);
+       // 初始化 vod_play_from 和 vod_play_url
+       let vod_play_from = [];
+       let vod_play_url = [];
+       // 记录云盘名称的使用次数
+       const cloudNameCount = {};
+       //await toast('正在加载网盘剧集信息',5);
+   for (let i = 0; i < cloudLinks.length; i++) {
+     const link = cloudLinks[i];
+     if (link.includes('uc.cn') || link.includes('quark.cn')) {
+      let baseCloudName = link.includes('uc.cn') ? 'UC网盘' : '夸克网盘'; // 对应 vod_play_from
+       await toast(`正在获取网盘剧集信息`, 2); // 2 秒的持续时间
+       const result = await fetchVideoFiles(link); // 所有播放链接对应 vod_play_url
+       if (result) { // 检查 result 是否为空
+         // 检查云盘名称是否已经使用过
+         if (cloudNameCount[baseCloudName] === undefined) {
+           cloudNameCount[baseCloudName] = 1;
+           vod_play_from.push(baseCloudName);
+         } else {
+           cloudNameCount[baseCloudName]++;
+           vod_play_from.push(`${baseCloudName}${cloudNameCount[baseCloudName]}`);
+         }
+   
+         vod_play_url.push(result);
+       }
+     }
+   }
+       // 将提取的信息组织成一个对象
+       const movieDetails = {
+         code: 1,
+         msg: "数据列表",
+         page: 1,
+         pagecount: 1,
+         limit: "20",
+         total: 1,
+         list: [{
+           vod_id: vod_id,
+           vod_name: vod_name,
+           vod_pic: vod_pic,
+           vod_actor: vod_actor,
+           vod_director: vod_director,
+           vod_remarks: vod_remarks,
+           vod_year: vod_year,
+           vod_content: vod_content,
+           vod_play_from: vod_play_from.join('$$$'),
+           vod_play_url: vod_play_url.join('$$$')
+         }]
+       };
+   
+       // 处理 vod_play_from 和 vod_play_url
+       const playFromList = movieDetails.list[0].vod_play_from.split('$$$');
+       const playUrlList = movieDetails.list[0].vod_play_url.split('$$$');
+   
+       const filteredPlayFromList = [];
+       const filteredPlayUrlList = [];
+   
+       for (let i = 0; i < playUrlList.length; i++) {
+         if (!playUrlList[i].includes('该网盘已取消了分享')) {
+           filteredPlayFromList.push(playFromList[i]);
+           filteredPlayUrlList.push(playUrlList[i]);
+         }
+       }
+   
+       movieDetails.list[0].vod_play_from = filteredPlayFromList.join('$$$');
+       movieDetails.list[0].vod_play_url = filteredPlayUrlList.join('$$$');
+   
+       // 返回 JSON 字符串
+       console.log(JSON.stringify(movieDetails));
+       return JSON.stringify(movieDetails);
+     } catch (error) {
+       console.error('Error fetching movie details:', error);
+       return JSON.stringify({ code: 0, msg: "获取数据失败", error: error.message });
+     }
+   }
+   
+
    
    
    

@@ -1,6 +1,5 @@
 {
-	"sites": [
-	{
+	"sites": [{
 		"key": "duoduo",
 		"name": "🍥多多┃网盘",
 		"type": 5,
@@ -8,13 +7,13 @@
 		"filterClass": "",
 		"firstClass": "",
 		"filterPlay": "",
-		"firstPlay": "夸克网盘,夸克网盘2",
+		"firstPlay": "夸克网盘2,夸克网盘",
 		"ext": "./js/duoduo.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},
+	},	
 	{
 		"key": "wogg",
 		"name": "🧸玩偶┃网盘",
@@ -100,6 +99,20 @@
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
 	},{
+		"key": "nanf",
+		"name": "🀁南风短剧┃夸克",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "./js/nanf.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "0"
+	},{
 		"key": "cloud189",
 		"name": "🐋雷鲸┃天翼",
 		"type": 5,
@@ -125,7 +138,49 @@
 		"ext": "./js/6yueting.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ".mp3?ts=,.m4a",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "2"
+	},{
+		"key": "haiyang",
+		"name": "🌊海洋┃听书",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "./js/haiyang.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "2"
+	},{
+		"key": "kuwotingshu",
+		"name": "🎧酷我┃听书",
+		"type": 5,
+		"searchable": 1,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "./js/kuwotingshu.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "2"
+	},{
+		"key": "qtradio",
+		"name": "🎧蜻蜓┃FM广播",
+		"type": 5,
+		"searchable": 0,
+		"filterClass": "",
+		"firstClass": "",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "./js/qtradio.js",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
 		"selectedPlayer": "2"
 	},{
 		"key": "jcyjcy",
@@ -265,6 +320,20 @@
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": ""
+	},{
+		"key": "czzy",
+		"name": "🏭厂长┃嗅探",
+		"type": 3,
+		"searchable": 0,
+		"filterClass": "",
+		"firstClass": "国产剧",
+		"filterPlay": "",
+		"firstPlay": "",
+		"ext": "./xbiu/czzy_xbiu.json",
+		"flagable": 0,
+		"filterPlayFileKeywords": "",
+		"keepPlayFileKeywords": "",
+		"selectedPlayer": "1"
 	},{
 		"key": "damifan",
 		"name": "🍿大米星球┃嗅探",
@@ -423,19 +492,6 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": ""
 	},{
-		"key": "58dongman",
-		"name": "5️⃣58动漫┃嗅探",
-		"type": 6,
-		"searchable": 1,
-		"filterClass": "",
-		"firstClass": "",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "./soup/58dongman_soup.json",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
 		"key": "dmand5",
 		"name": "🏝动漫岛┃嗅探",
 		"type": 6,
@@ -488,19 +544,6 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},{
-		"key": "82mao",
-		"name": "🐉天龙┃资源",
-		"type": 1,
-		"searchable": 1,
-		"filterClass": "VIP影片,公告,动漫频道,海外动漫,国产动漫,日韩动漫,欧美动漫,港台动漫,综艺小品,微电影,电视剧场,电影频道,内地综艺,港台综艺,日韩综艺,欧美综艺",
-		"firstClass": "国产剧,香港剧",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "https://www.82mao.com/api.php/provide/vod/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
 	},{
 		"key": "xiaomaomi",
 		"name": "😺小猫咪┃资源",

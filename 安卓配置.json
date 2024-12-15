@@ -1,6 +1,5 @@
 {
-	"sites": [
-	{
+	"sites": [{
 		"key": "duoduo",
 		"name": "🍥多多网盘",
 		"type": 5,
@@ -8,7 +7,7 @@
 		"filterClass": "",
 		"firstClass": "",
 		"filterPlay": "",
-		"firstPlay": "夸克网盘,夸克网盘2",
+		"firstPlay": "夸克网盘2,夸克网盘",
 		"ext": "./js/duoduo.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
@@ -248,19 +247,6 @@
 		"filterPlay": "",
 		"firstPlay": "",
 		"ext": "https://cj.rycjapi.com/api.php/provide/vod/from/rym3u8/at/xml/",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": ""
-	},{
-		"key": "82mao",
-		"name": "天龙资源",
-		"type": 1,
-		"searchable": 1,
-		"filterClass": "VIP影片,公告,动漫频道,海外动漫,国产动漫,日韩动漫,欧美动漫,港台动漫,综艺小品,微电影,电视剧场,电影频道,内地综艺,港台综艺,日韩综艺,欧美综艺",
-		"firstClass": "国产剧,香港剧",
-		"filterPlay": "qiyi,mgtv,heimuer",
-		"firstPlay": "",
-		"ext": "https://www.82mao.com/api.php/provide/vod/",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": ""
