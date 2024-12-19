@@ -14,7 +14,7 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},{
+	},	{
 		"key": "douban",
 		"name": "👍豆瓣┃推荐",
 		"type": 5,
@@ -56,7 +56,8 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},{
+	},
+	{
 		"key": "wogg",
 		"name": "🧸玩偶┃网盘",
 		"type": 5,
@@ -70,7 +71,7 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	},
+	},	
 	{
 		"key": "mogg",
 		"name": "🤹‍♂️木偶┃UC盘",

@@ -1,9 +1,9 @@
+点击加入群组：https://t.me/+vgu3e34l2PQ5NDA1
+
 ## APP简介
 tBox是一款多功能APP空壳，支持导入直播源、影视和听书源。
 
 在影视点播方面，用户可播放4K网盘资源，也可自行编写简单的规则实现嗅探网页播放; 听书模式则允许后台熄屏播放。
-
-此外，从1.0.9版开始 理论上点播、直播功能也支持后台熄屏播放音频。
 
 tBox虽然在UI设计上借鉴了猫影视的风格，但其源码是完全不同的。
 猫影视作为一款经典应用，我个人作为业余开发者，自认为难以超越。
@@ -15,32 +15,57 @@ tBox虽然在UI设计上借鉴了猫影视的风格，但其源码是完全不�
 搜索影片之前，请关闭不常用的站源。
 
 ## 规则或APP更新
-
 天翼云盘：首次使用在设置中登录天翼云盘及打开一次雷鲸。
 天翼云盘的cookie有IP验证,切换IP后cookie会无效，且ipv4和ipv6的cookie无法混用。建议在电信的WIFI环境下使用(ipv4)。
 如雷鲸无返回数据，请在设置中打开一次该站点，该站点有时需效验。
 
-1.0.10版更新：优化历史记录、收藏记录按站源显示；修复素白白、奇优访问异常；修复直播收藏分类中点击同名频道会被多选的问题。
+### V1.0.11版更新：优化搜索、增加豆瓣、酷我音乐（请在设置中登录哔哩哔哩，VIP歌曲通过该站解析）
+1.0.11版以上请搭配new.json配置使用：https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/new.json
 
-#### 12月14日：增加南风短剧（夸克网盘）
+旧版配置不再维护，请更新至新版。
 
-因安卓端优秀APP很多、再加上工作繁忙，暂不对安卓端进行新版发布（旧版可正常使用）
-
-后台听书配置如下（1.0.9版开始支持后台听书、听广播模式）：
-
-"selectedPlayer": "2" 选择音频播放器
-
+ recommend为1时为推荐源，点击影片时会跳转搜索页面。
 ```json
 {
-	"key": "6yueting",
-	"name": "6️⃣六月┃听书",
+	"key": "douban",
+	"name": "👍豆瓣┃推荐",
+	"type": 5,
+	"searchable": 0,
+	"filterClass": "",
+	"firstClass": "",
+	"filterPlay": "",
+	"firstPlay": "",
+	"ext": "https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/newjs/douban.js",
+	"flagable": 0,
+	"filterPlayFileKeywords": "",
+	"keepPlayFileKeywords": "",
+	"recommend": "1"
+}
+```
+
+ selectedPlayer为2时打开详情页后自动选择音频播放器。
+ 
+ ps: 哔哩哔哩的音源，音频播放器可能出现：无法拖动进度、倒计时显示错误（可尝试选择源：🎵酷我┃推荐播放器  播放）。
+ 
+ 酷我音乐搜索方法：
+ 
+ 1：直接输入歌曲名称（例如：爱在西元前）
+ 
+ 2：输入歌手文字及姓名（例如：歌手周杰伦）
+ 
+ 3：输入专辑文字及名称（例如：专辑叶惠美）
+ 
+```json
+{
+	"key": "kuwosong",
+	"name": "🎵酷我┃音乐",
 	"type": 5,
 	"searchable": 1,
 	"filterClass": "",
 	"firstClass": "",
 	"filterPlay": "",
 	"firstPlay": "",
-	"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/6yueting.js",
+	"ext": "https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/newjs/kuwosong.js",
 	"flagable": 0,
 	"filterPlayFileKeywords": "",
 	"keepPlayFileKeywords": "",
@@ -49,41 +74,6 @@ tBox虽然在UI设计上借鉴了猫影视的风格，但其源码是完全不�
 ```
 
 
-```json
-{
-	"key": "haiyang",
-	"name": "🌊海洋┃听书",
-	"type": 5,
-	"searchable": 1,
-	"filterClass": "",
-	"firstClass": "",
-	"filterPlay": "",
-	"firstPlay": "",
-	"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/haiyang.js",
-	"flagable": 0,
-	"filterPlayFileKeywords": "",
-	"keepPlayFileKeywords": "",
-	"selectedPlayer": "2"
-}
-```
-
-```json
-{
-	"key": "qtradio",
-	"name": "🎧蜻蜓┃FM广播",
-	"type": 5,
-	"searchable": 1,
-	"filterClass": "",
-	"firstClass": "",
-	"filterPlay": "",
-	"firstPlay": "",
-	"ext": "https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/qtradio.js",
-	"flagable": 0,
-	"filterPlayFileKeywords": "",
-	"keepPlayFileKeywords": "",
-	"selectedPlayer": "2"
-}
-```
 
 ------------------------------------------------------
 该直播源大部分频道需要ipv6访问，其他源请自行从github搜索。
@@ -103,10 +93,9 @@ User-Agent: okHttp
 
 ------------------------------------------------
 ### 视频源配置链接
-ios端配置（支持嗅探）：https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/配置.json
+旧版配置（限1.0.9~1.0.10版，后续不再维护，建议更新）：https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/配置.json
 
-安卓端配置（不支持嗅探）：https://ghp.ci/raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/安卓配置.json
-
+新版配置（限1.0.11版以上）：https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/new.json
 
 **关于tBox的更新：**
 
