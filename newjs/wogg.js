@@ -713,14 +713,13 @@ if (isQuark) {
        const list = filteredItems.map((item) => {
          const vod_name = item.match(/title="([^"]+)"/)?.[1].trim() || '';
          const vod_pic = item.match(/data-src="([^"]+)"/)?.[1] || '';
-         const final_pic = vod_pic ? `https://images.weserv.nl/?url=${vod_pic}&w=300&h=300` : '';
          const vod_link = item.match(/<a href="([^"]+)"/)?.[1] || '';
          const vod_remarks = item.match(/<div class="module-item-text">(.*?)<\/div>/)?.[1].trim() || '';
          return {
            vod_id: vod_link,
            vod_name: vod_name,
            vod_remarks: vod_remarks,
-           vod_pic: final_pic
+           vod_pic: vod_pic
          };
        });
    
@@ -1366,14 +1365,13 @@ if (isQuark) {
            const list = items.map((item) => {
                const vod_name = 文本_取中间( 文本_取中间(item,'<a class="video-serial"','/a>'),'title="','"') || '';
                const vod_pic = 文本_取中间(item,'data-src="','"') || '';
-               const final_pic = vod_pic ? `https://images.weserv.nl/?url=${vod_pic}&w=300&h=300` : '';
                const vod_id = 文本_取中间( 文本_取中间(item,'<a class="video-serial"','/a>'),'href="','"') || '';
                const vod_remarks = 文本_取中间( 文本_取中间(item,'<a class="video-serial"','/a>'),'">','<') || '';
                return {
                    vod_id: vod_id,
                    vod_name: vod_name,
                    vod_remarks: vod_remarks,
-                   vod_pic: final_pic
+                   vod_pic: vod_pic
                };
            });
            return JSON.stringify({
@@ -1428,14 +1426,13 @@ if (isQuark) {
          console.log(item);
          const vod_name = item.match(/title="([^"]+)"/)?.[1].trim() || '';
          const vod_pic = item.match(/data-src="([^"]+)"/)?.[1] || '';
-         const final_pic = vod_pic ? `https://images.weserv.nl/?url=${vod_pic}&w=300&h=300` : '';
          const vod_link = item.match(/<a href="([^"]+)"/)?.[1] || '';
          const vod_remarks = item.match(/<div class="module-item-text">(.*?)<\/div>/)?.[1].trim() || '';
          return {
            vod_id: vod_link,
            vod_name: vod_name,
            vod_remarks: vod_remarks,
-           vod_pic: final_pic
+           vod_pic: vod_pic
          };
        });
        return JSON.stringify({
@@ -1478,7 +1475,6 @@ if (isQuark) {
        const vod_actor = 移除html代码(html.match(/<div class="video-info-items"><span class="video-info-itemtitle">主演：<\/span>([\s\S]*?)<\/div>/)[1].trim()) || '未知';
        //console.log(vod_actor);
        const vod_pic = html.match(/<img class="lazyload" data-src="(.*?)"/)[1] || '';
-       const final_pic = vod_pic ? `https://images.weserv.nl/?url=${vod_pic}&w=300&h=300` : '';
        //console.log(vod_pic);
        let vod_remarks='';
        if(html.indexOf('备注：</span>') !== -1){
@@ -1528,7 +1524,7 @@ if (isQuark) {
          list: [{
            vod_id: vod_id,
            vod_name: vod_name,
-           vod_pic: final_pic,
+           vod_pic: vod_pic,
            vod_actor: vod_actor,
            vod_director: vod_director,
            vod_remarks: vod_remarks,
