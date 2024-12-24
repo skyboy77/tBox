@@ -158,371 +158,330 @@ const webSite= 'https://tv.yydsys.top';
     // .then(data => console.log(data))
     // .catch(error => console.error('Error:', error));
    
-   
-   async function playerContent(vod_id) {
-     try {
-       // Step 1: URL decode vod_id to get JSON text
-       const decodedVodId = decodeURIComponent(vod_id);
-       const vodData = JSON.parse(decodedVodId);
-       const isQuark = vodData.isQuark;
-       // Step 2: Find tBox folder and replace to_pdir_fid
-       let page = 1;
-       let tBoxFid = null;
-       let getUrl = "";
-       let createUrl = "";
-       let fileUrl = "";
-       let playUrl = "";
-       let deleteUrl = "";
-       let origin = "";
-       let cookie = "";
-       let tBoxFileUrl = "";
-       if (isQuark) {
-         getUrl = `https://drive-pc.quark.cn/1/clouddrive/file/sort?pr=ucpro&fr=pc&uc_param_str=&pdir_fid=0&_page=${page}&_size=100&_fetch_total=false&_fetch_sub_dirs=1&_sort=&__dt=1604987&__t=${Date.now()}`;
-         createUrl = `https://drive-pc.quark.cn/1/clouddrive/file?pr=ucpro&fr=pc&uc_param_str=`;
-         fileUrl = `https://pc-api.uc.cn/1/clouddrive/file/sort?pr=UCBrowser&fr=pc&pdir_fid=${vodData.to_pdir_fid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
-         playUrl = `https://drive-pc.quark.cn/1/clouddrive/file/v2/play?pr=ucpro&fr=pc&uc_param_str=`;
-         deleteUrl = `https://drive-pc.quark.cn/1/clouddrive/file/delete?pr=ucpro&fr=pc&uc_param_str=`;
-         origin = `https://pan.quark.cn`;
-         cookie = quarkCookie;
-       } else {
-         getUrl = `https://pc-api.uc.cn/1/clouddrive/file/sort?pr=UCBrowser&fr=pc&pdir_fid=0&_page=${page}&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
-         createUrl = `https://pc-api.uc.cn/1/clouddrive/file?pr=UCBrowser&fr=pc`;
-         fileUrl = `https://pc-api.uc.cn/1/clouddrive/file/sort?pr=UCBrowser&fr=pc&pdir_fid=${vodData.to_pdir_fid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
-         playUrl = `https://pc-api.uc.cn/1/clouddrive/file/v2/play?pr=UCBrowser&fr=pc`;
-         deleteUrl = `https://pc-api.uc.cn/1/clouddrive/file/delete?pr=UCBrowser&fr=pc`;
-         origin = `https://drive.uc.cn`;
-         cookie = ucCookie;
-       }
-       //await toast('正在查找tBox文件夹',2);
-       while (true) {
-         const getResponse = await 访问网页(getUrl, 0, null, cookie);
-         const getData = JSON.parse(getResponse);
-         if (getData.status !== 200 || getData.code !== 0) {
-           throw new Error(`Failed to get file list: ${getData.message}`);
-         }
-         const tBoxFolder = getData.data.list.find(
-           (file) => file.file_type === 0 && file.file_name === "tBox"
-         );
-         if (tBoxFolder) {
-           tBoxFid = tBoxFolder.fid;
-           break;
-         }
-         // If the list size is less than 100, break the loop
-         if (getData.data.list.length < 100) {
-           break;
-         }
-         page++;
-       }
-       if (tBoxFid) {
-         vodData.to_pdir_fid = tBoxFid;
-         await toast("正在获取影片文件信息", 2);
-         if (isQuark) {
-           tBoxFileUrl = `https://drive-pc.quark.cn/1/clouddrive/file/sort?pr=ucpro&fr=pc&uc_param_str=&pdir_fid=${tBoxFid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
-         } else {
-           tBoxFileUrl = `https://pc-api.uc.cn/1/clouddrive/file/sort?pr=UCBrowser&fr=pc&uc_param_str=&pdir_fid=${tBoxFid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
-         }
-         // 带 cookie 用 get 方式访问指定的 URL 并取出 list 里的 fid
-         const tBoxFileResponse = await 访问网页(tBoxFileUrl, 0, null, cookie);
-         const tBoxFileData = JSON.parse(tBoxFileResponse);
-         if (tBoxFileData.status !== 200 || tBoxFileData.code !== 0) {
-           throw new Error(
-             `Failed to get tBox file list: ${tBoxFileData.message}`
-           );
-         }
-         const fids = tBoxFileData.data.list.map((file) => file.fid);
-         if (fids.length > 0) {
-           // 带 cookie 用 post 方式删除这些 fid
-           const deleteParams = JSON.stringify({
-             action_type: 2,
-             filelist: fids,
-             exclude_fids: [],
-           });
-           const deleteResponse = await 访问网页(
-             deleteUrl,
-             1,
-             deleteParams,
-             cookie,
-             "Content-Type: application/json;charset=UTF-8"
-           );
-         }
-       } else {
-         // Step 3: Create tBox folder if not found
-         const createParams = JSON.stringify({
-           pdir_fid: "0",
-           file_name: "tBox",
-           dir_path: "",
-           dir_init_lock: false,
-         });
-         const createResponse = await 访问网页(
-           createUrl,
-           1,
-           createParams,
-           cookie,
-           isQuark
-             ? "Content-Type: application/json\nOrigin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
-             : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
-         );
-         const createData = JSON.parse(createResponse);
-         if (createData.status !== 200 || createData.code !== 0) {
-           throw new Error(
-             `Failed to create tBox folder: ${createData.message}`
-           );
-         }
-         vodData.to_pdir_fid = createData.data.fid;
-       }
-       let retryCount = 0;
-       let videoLinks = null;
-       let saveAsTopFid = null;
-       await toast("正在转存影片到网盘...", 2);
-       while (retryCount < 5 && !videoLinks) {
-         // Step 4: Post the final vodData
-         const saveUrl = isQuark
-           ? `https://drive-pc.quark.cn/1/clouddrive/share/sharepage/save?pr=ucpro&fr=pc&uc_param_str=&__dt=2460776&__t=${Date.now()}`
-           : `https://pc-api.uc.cn/1/clouddrive/share/sharepage/save?pr=UCBrowser&fr=pc`;
-         const saveParams = JSON.stringify(vodData);
-         const saveResponse = await 访问网页(
-           saveUrl,
-           1,
-           saveParams,
-           cookie,
-           isQuark
-             ? "Content-Type: application/json\nOrigin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
-             : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
-         );
-         const saveData = JSON.parse(saveResponse);
-         if (saveData.status !== 200 || saveData.code !== 0) {
-           throw new Error(`Failed to save vodData: ${saveData.message}`);
-         }
-         // Step 5: Check task status
-         const taskId = saveData.data.task_id;
-
-         let retryIndex = 0;
-         let isTaskFinished = false;
-         saveAsTopFid = null;
-
-         while (retryIndex < 15 && !isTaskFinished) {
-           const taskUrl = isQuark
-             ? `https://drive-pc.quark.cn/1/clouddrive/task?pr=ucpro&fr=pc&uc_param_str=&task_id=${taskId}&retry_index=${retryIndex}&__dt=337800&__t=${Date.now()}`
-             : `https://pc-api.uc.cn/1/clouddrive/task?pr=UCBrowser&fr=pc&uc_param_str=&task_id=${taskId}&retry_index=${retryIndex}&__dt=337800&__t=${Date.now()}`;
-           const taskResponse = await 访问网页(
-             taskUrl,
-             0,
-             "",
-             cookie,
-             isQuark
-               ? "Origin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
-               : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
-           );
-           const taskData = JSON.parse(taskResponse);
-
-           if (taskData.status === 400 && taskData.code === 32003) {
-             const fileResponse = await 访问网页(
-               fileUrl,
-               0,
-               "",
-               cookie,
-               isQuark
-                 ? "Content-Type: application/json\nOrigin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
-                 : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
-             );
-             const fileData = JSON.parse(fileResponse);
-             const fileList = fileData.data.list;
-             const targetFile = fileList.find(
-               (file) => file.size === vodData.fid_size
-             );
-             if (targetFile) {
-               isTaskFinished = true;
-               saveAsTopFid = targetFile.fid;
-             }
-           } else if (taskData.status !== 200 || taskData.code !== 0) {
-             throw new Error(`Failed to get task status: ${taskData.message}`);
-           } else if (taskData.data.finished_at) {
-             isTaskFinished = true;
-             saveAsTopFid = taskData.data.save_as.save_as_top_fids[0];
-           }
-
-           retryIndex++;
-           await new Promise((resolve) => setTimeout(resolve, 500));
-         }
-
-         if (!isTaskFinished) {
-           throw new Error("Task did not finish within the expected time.");
-         }
-
-         // Step 6: Get video playback links with retry mechanism
-         await toast("正在获取影片播放链接...", 2);
-         let retryCountForPlay = 0;
-         let mySetCookie = null;
-
-
-
-
- const fetchPlayResponse = async (url, params, headers) => {
-  return await 访问网页(url, 1, params, cookie, headers, 15000, (setCookie) => {
-    mySetCookie = setCookie;
-  });
-};
-
-const mergeCookies = (newCookies) => {
-  const mergedCookies = [
-    ...new Set([
-      ...newCookies,
-      ...cookie.split(";").map((item) => item.trim()),
-    ]),
-  ].join("; ");
-  return mergedCookies;
-};
-
-const handlePlayResponse = (playResponse) => {
-  let playData = JSON.parse(playResponse);
-  if (playData.status !== 200 || playData.code !== 0) {
-    if (playData.message.includes("文件已删除") || playData.message.includes("file not found")) {
-      return null;
-    }
-    throw new Error(`Failed to get video playback links: ${playData.message}`);
-  }
-  return playData;
-};
-
-if (isQuark) {
-  while (retryCountForPlay < 5 && !videoLinks) {
+async function playerContent(vod_id) {
     try {
-      let playParams = JSON.stringify({
-        fid: saveAsTopFid,
-        resolutions: "normal,low,high,super,2k,4k",
-        supports: "fmp4,m3u8",
-      });
-      let playResponse = await fetchPlayResponse(
-        playUrl,
-        playParams,
-        `Referer: ${origin}`
-      );
-      let playData = handlePlayResponse(playResponse);
-      if (!playData) break;
+        // Step 1: URL decode vod_id to get JSON text
+        const decodedVodId = decodeURIComponent(vod_id);
+        const vodData = JSON.parse(decodedVodId);
+        const isQuark = vodData.isQuark;
+        // Step 2: Find tBox folder and replace to_pdir_fid
+        let page = 1;
+        let tBoxFid = null;
+        let getUrl = "";
+        let createUrl = "";
+        let fileUrl = "";
+        let playUrl = "";
+        let deleteUrl = "";
+        let origin = "";
+        let cookie = "";
+        let tBoxFileUrl = "";
+        if (isQuark) {
+            getUrl = `https://drive-pc.quark.cn/1/clouddrive/file/sort?pr=ucpro&fr=pc&uc_param_str=&pdir_fid=0&_page=${page}&_size=100&_fetch_total=false&_fetch_sub_dirs=1&_sort=&__dt=1604987&__t=${Date.now()}`;
+            createUrl = `https://drive-pc.quark.cn/1/clouddrive/file?pr=ucpro&fr=pc&uc_param_str=`;
+            fileUrl = `https://pc-api.uc.cn/1/clouddrive/file/sort?pr=UCBrowser&fr=pc&pdir_fid=${vodData.to_pdir_fid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
+            playUrl = `https://drive-pc.quark.cn/1/clouddrive/file/v2/play?pr=ucpro&fr=pc&uc_param_str=`;
+            deleteUrl = `https://drive-pc.quark.cn/1/clouddrive/file/delete?pr=ucpro&fr=pc&uc_param_str=`;
+            origin = `https://pan.quark.cn`;
+            cookie = quarkCookie;
+        } else {
+            getUrl = `https://pc-api.uc.cn/1/clouddrive/file/sort?pr=UCBrowser&fr=pc&pdir_fid=0&_page=${page}&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
+            createUrl = `https://pc-api.uc.cn/1/clouddrive/file?pr=UCBrowser&fr=pc`;
+            fileUrl = `https://pc-api.uc.cn/1/clouddrive/file/sort?pr=UCBrowser&fr=pc&pdir_fid=${vodData.to_pdir_fid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
+            playUrl = `https://pc-api.uc.cn/1/clouddrive/file/v2/play?pr=UCBrowser&fr=pc`;
+            deleteUrl = `https://pc-api.uc.cn/1/clouddrive/file/delete?pr=UCBrowser&fr=pc`;
+            origin = `https://drive.uc.cn`;
+            cookie = ucCookie;
+        }
+        //await toast('正在查找tBox文件夹',2);
+        while (true) {
+            const getResponse = await 访问网页(getUrl, 0, null, cookie);
+            const getData = JSON.parse(getResponse);
+            if (getData.status!== 200 || getData.code!== 0) {
+                throw new Error(`Failed to get file list: ${getData.message}`);
+            }
+            const tBoxFolder = getData.data.list.find(
+                (file) => file.file_type === 0 && file.file_name === "tBox"
+            );
+            if (tBoxFolder) {
+                tBoxFid = tBoxFolder.fid;
+                break;
+            }
+            // If the list size is less than 100, break the loop
+            if (getData.data.list.length < 100) {
+                break;
+            }
+            page++;
+        }
+        if (tBoxFid) {
+            vodData.to_pdir_fid = tBoxFid;
+            await toast("正在获取影片文件信息", 2);
+            if (isQuark) {
+                tBoxFileUrl = `https://drive-pc.quark.cn/1/clouddrive/file/sort?pr=ucpro&fr=pc&uc_param_str=&pdir_fid=${tBoxFid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
+            } else {
+                tBoxFileUrl = `https://pc-api.uc.cn/1/clouddrive/file/sort?pr=UCBrowser&fr=pc&uc_param_str=&pdir_fid=${tBoxFid}&_page=1&_size=50&_fetch_total=1&_fetch_sub_dirs=0&_sort=file_type:asc,updated_at:desc`;
+            }
+            // 带 cookie 用 get 方式访问指定的 URL 并取出 list 里的 fid
+            const tBoxFileResponse = await 访问网页(tBoxFileUrl, 0, null, cookie);
+            const tBoxFileData = JSON.parse(tBoxFileResponse);
+            if (tBoxFileData.status!== 200 || tBoxFileData.code!== 0) {
+                throw new Error(
+                    `Failed to get tBox file list: ${tBoxFileData.message}`
+                );
+            }
+            const fids = tBoxFileData.data.list.map((file) => file.fid);
+            // 此处原先是有基于fids进行删除文件的操作，现已删除相关代码
+        } else {
+            // Step 3: Create tBox folder if not found
+            const createParams = JSON.stringify({
+                pdir_fid: "0",
+                file_name: "tBox",
+                dir_path: "",
+                dir_init_lock: false,
+            });
+            const createResponse = await 访问网页(
+                createUrl,
+                1,
+                createParams,
+                cookie,
+                isQuark
+                  ? "Content-Type: application/json\nOrigin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
+                    : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
+            );
+            const createData = JSON.parse(createResponse);
+            if (createData.status!== 200 || createData.code!== 0) {
+                throw new Error(
+                    `Failed to create tBox folder: ${createData.message}`
+                );
+            }
+            vodData.to_pdir_fid = createData.data.fid;
+        }
+        let retryCount = 0;
+        let videoLinks = null;
+        let saveAsTopFid = null;
+        await toast("正在转存影片到网盘...", 2);
+        while (retryCount < 5 &&!videoLinks) {
+            // Step 4: Post the final vodData
+            const saveUrl = isQuark
+              ? `https://drive-pc.quark.cn/1/clouddrive/share/sharepage/save?pr=ucpro&fr=pc&uc_param_str=&__dt=2460776&__t=${Date.now()}`
+                : `https://pc-api.uc.cn/1/clouddrive/share/sharepage/save?pr=UCBrowser&fr=pc`;
+            const saveParams = JSON.stringify(vodData);
+            const saveResponse = await 访问网页(
+                saveUrl,
+                1,
+                saveParams,
+                cookie,
+                isQuark
+                  ? "Content-Type: application/json\nOrigin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
+                    : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
+            );
+            const saveData = JSON.parse(saveResponse);
+            if (saveData.status!== 200 || saveData.code!== 0) {
+                throw new Error(`Failed to save vodData: ${saveData.message}`);
+            }
+            // Step 5: Check task status
+            const taskId = saveData.data.task_id;
 
-      videoLinks = playData.data.video_list
-        .map((video) => {
-          const url = video.video_info && video.video_info.url ? video.video_info.url : null;
-          if (url) {
-            return {
-              url: url,
-              resolution: video.resolution,
-              member_right: video.member_right,
-              width: video.video_info.width,
-              height: video.video_info.height,
+            let retryIndex = 0;
+            let isTaskFinished = false;
+            saveAsTopFid = null;
+
+            while (retryIndex < 15 &&!isTaskFinished) {
+                const taskUrl = isQuark
+                  ? `https://drive-pc.quark.cn/1/clouddrive/task?pr=ucpro&fr=pc&uc_param_str=&task_id=${taskId}&retry_index=${retryIndex}&__dt=337800&__t=${Date.now()}`
+                    : `https://pc-api.uc.cn/1/clouddrive/task?pr=UCBrowser&fr=pc&uc_param_str=&task_id=${taskId}&retry_index=${retryIndex}&__dt=337800&__t=${Date.now()}`;
+                const taskResponse = await 访问网页(
+                    taskUrl,
+                    0,
+                    "",
+                    cookie,
+                    isQuark
+                      ? "Origin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
+                        : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
+                );
+                const taskData = JSON.parse(taskResponse);
+
+                if (taskData.status === 400 && taskData.code === 32003) {
+                    const fileResponse = await 访问网页(
+                        fileUrl,
+                        0,
+                        "",
+                        cookie,
+                        isQuark
+                          ? "Content-Type: application/json\nOrigin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
+                            : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
+                    );
+                    const fileData = JSON.parse(fileResponse);
+                    const fileList = fileData.data.list;
+                    const targetFile = fileList.find(
+                        (file) => file.size === vodData.fid_size
+                    );
+                    if (targetFile) {
+                        isTaskFinished = true;
+                        saveAsTopFid = targetFile.fid;
+                    }
+                } else if (taskData.status!== 200 || taskData.code!== 0) {
+                    throw new Error(`Failed to get task status: ${taskData.message}`);
+                } else if (taskData.data.finished_at) {
+                    isTaskFinished = true;
+                    saveAsTopFid = taskData.data.save_as.save_as_top_fids[0];
+                }
+
+                retryIndex++;
+                await new Promise((resolve) => setTimeout(resolve, 500));
+            }
+
+            if (!isTaskFinished) {
+                throw new Error("Task did not finish within the expected time.");
+            }
+
+            // Step 6: Get video playback links with retry mechanism
+            await toast("正在获取影片播放链接...", 2);
+            let retryCountForPlay = 0;
+            let mySetCookie = null;
+
+
+
+
+            const fetchPlayResponse = async (url, params, headers) => {
+                return await 访问网页(url, 1, params, cookie, headers, 15000, (setCookie) => {
+                    mySetCookie = setCookie;
+                });
             };
-          }
-        })
-        .filter((video) => video !== undefined);
 
-      if (mySetCookie) {
-        const newCookies = mySetCookie
-          .split(",")
-          .map((item) => item.split(";")[0].trim())
-          .filter((item) => item !== undefined);
-        cookie = mergeCookies(newCookies);
-      }
+            const mergeCookies = (newCookies) => {
+                const mergedCookies = [
+                   ...new Set([
+                       ...newCookies,
+                       ...cookie.split(";").map((item) => item.trim()),
+                    ]),
+                ].join("; ");
+                return mergedCookies;
+            };
+
+            const handlePlayResponse = (playResponse) => {
+                let playData = JSON.parse(playResponse);
+                if (playData.status!== 200 || playData.code!== 0) {
+                    if (playData.message.includes("文件已删除") || playData.message.includes("file not found")) {
+                        return null;
+                    }
+                    throw new Error(`Failed to get video playback links: ${playData.message}`);
+                }
+                return playData;
+            };
+
+            if (isQuark) {
+                while (retryCountForPlay < 5 &&!videoLinks) {
+                    try {
+                        let playParams = JSON.stringify({
+                            fid: saveAsTopFid,
+                            resolutions: "normal,low,high,super,2k,4k",
+                            supports: "fmp4,m3u8",
+                        });
+                        let playResponse = await fetchPlayResponse(
+                            playUrl,
+                            playParams,
+                            `Referer: ${origin}`
+                        );
+                        let playData = handlePlayResponse(playResponse);
+                        if (!playData) break;
+
+                        videoLinks = playData.data.video_list
+                          .map((video) => {
+                                const url = video.video_info && video.video_info.url? video.video_info.url : null;
+                                if (url) {
+                                    return {
+                                        url: url,
+                                        resolution: video.resolution,
+                                        member_right: video.member_right,
+                                        width: video.video_info.width,
+                                        height: video.video_info.height,
+                                    };
+                                }
+                            })
+                          .filter((video) => video!== undefined);
+
+                        if (mySetCookie) {
+                            const newCookies = mySetCookie
+                              .split(",")
+                              .map((item) => item.split(";")[0].trim())
+                              .filter((item) => item!== undefined);
+                            cookie = mergeCookies(newCookies);
+                        }
+                    } catch (error) {
+                        retryCountForPlay++;
+                        await new Promise((resolve) => setTimeout(resolve, 500));
+                    }
+                }
+            } else {
+                let playParams = JSON.stringify({ fids: [saveAsTopFid] });
+                let playResponse = await fetchPlayResponse(
+                    "https://pc-api.uc.cn/1/clouddrive/file/download?pr=UCBrowser&fr=pc",
+                    playParams,
+                    `Content-Type: application/json;charset=UTF-8\nReferer: ${origin}`
+                );
+                let playData = handlePlayResponse(playResponse);
+                if (!playData) return null;
+
+                let downloadUrl = playData.data[0].download_url;
+                if (downloadUrl) {
+                    videoLinks = [{ url: downloadUrl }];
+
+                    if (mySetCookie) {
+                        const newCookies = mySetCookie
+                          .split(",")
+                          .map((item) => item.split(";")[0].trim())
+                          .filter((item) => item!== undefined);
+                        cookie = mergeCookies(newCookies);
+                    }
+                }
+            }
+
+
+
+
+
+
+
+            if (!videoLinks) {
+                retryCount++;
+                if (retryCount < 5) {
+                    //console.log("文件已删除，重新执行 Step 4 + Step 5  "+retryCount.toString());
+                    await new Promise((resolve) => setTimeout(resolve, 5000));
+                } else {
+                    throw new Error(
+                        "Failed to get video playback links after 3 attempts."
+                    );
+                }
+            }
+        }
+
+
+
+        await toast("影片链接获取完毕,尝试播放...", 2);
+        const result = {
+            parse: 1,
+            header: `Cookie: ${cookie}\nOrigin: ${origin}\nReferer: ${origin}`,
+            playUrl: "",
+            url: "",
+        };
+        if (videoLinks.length > 0) {
+            result.url = videoLinks[0].url;
+        }
+        console.log(JSON.stringify(result));
+        return JSON.stringify(result);
     } catch (error) {
-      retryCountForPlay++;
-      await new Promise((resolve) => setTimeout(resolve, 500));
+        //console.error(error);
+        const result = {
+            parse: 1,
+            header: "",
+            playUrl: "",
+            url: "",
+            message: `获取链接失败: ${error}`,
+        };
+        return JSON.stringify(result);
     }
-  }
-} else {
-  let playParams = JSON.stringify({ fids: [saveAsTopFid] });
-  let playResponse = await fetchPlayResponse(
-    "https://pc-api.uc.cn/1/clouddrive/file/download?pr=UCBrowser&fr=pc",
-    playParams,
-    `Content-Type: application/json;charset=UTF-8\nReferer: ${origin}`
-  );
-  let playData = handlePlayResponse(playResponse);
-  if (!playData) return null;
+}   
 
-  let downloadUrl = playData.data[0].download_url;
-  if (downloadUrl) {
-    videoLinks = [{ url: downloadUrl }];
-
-    if (mySetCookie) {
-      const newCookies = mySetCookie
-        .split(",")
-        .map((item) => item.split(";")[0].trim())
-        .filter((item) => item !== undefined);
-      cookie = mergeCookies(newCookies);
-    }
-  }
-}
-
-
-
-
-
-
-
-         if (!videoLinks) {
-           retryCount++;
-           if (retryCount < 5) {
-             //console.log("文件已删除，重新执行 Step 4 + Step 5  "+retryCount.toString());
-             await new Promise((resolve) => setTimeout(resolve, 5000));
-           } else {
-             throw new Error(
-               "Failed to get video playback links after 3 attempts."
-             );
-           }
-         }
-       }
-
-       // Step 7: Delete the file
-       const deleteParams = JSON.stringify({
-         action_type: 2,
-         filelist: [saveAsTopFid],
-         exclude_fids: [],
-       });
-       const deleteResponse = await 访问网页(
-         deleteUrl,
-         1,
-         deleteParams,
-         cookie,
-         isQuark
-           ? "Content-Type: application/json\nOrigin: https://pan.quark.cn\nReferer: https://pan.quark.cn/"
-           : "Content-Type: application/json\nOrigin: https://drive.uc.cn\nReferer: https://drive.uc.cn/"
-       );
-       const deleteData = JSON.parse(deleteResponse);
-       if (deleteData.status !== 200 || deleteData.code !== 0) {
-         throw new Error(`Failed to delete file: ${deleteData.message}`);
-       }
-
-
-
-       //return {
-       //    saveAsTopFid: saveAsTopFid,
-       //     videoLinks: videoLinks
-       //};
-       await toast("影片链接获取完毕,尝试播放...", 2);
-       const result = {
-         parse: 1,
-         header: `Cookie: ${cookie}\nOrigin: ${origin}\nReferer: ${origin}`,
-         playUrl: "",
-         url: "",
-       };
-       if (videoLinks.length > 0) {
-         result.url = videoLinks[0].url;
-       }
-       console.log(JSON.stringify(result));
-       return JSON.stringify(result);
-     } catch (error) {
-       //console.error(error);
-       const result = {
-         parse: 1,
-         header: "",
-         playUrl: "",
-         url: "",
-         message: `获取链接失败: ${error}`,
-       };
-       return JSON.stringify(result);
-     }
-   }
-   
-   
-   
    // 获取uc、夸克网盘视频文件列表
    async function fetchVideoFiles(url) {
      try {
