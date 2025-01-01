@@ -58,7 +58,22 @@
     "filterPlayFileKeywords": "",
     "keepPlayFileKeywords": "",
         "danmu":"1"
-    },		
+    },
+{
+    "key": "dandanplay",
+    "name": "☄️┃动漫┃弹幕",
+    "type": 5,
+    "searchable": 0,
+    "filterClass": "",
+    "firstClass": "",
+    "filterPlay": "",
+    "firstPlay": "",
+    "ext": "https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/newjs/dandanplay.js",
+    "flagable": 0,
+    "filterPlayFileKeywords": "",
+    "keepPlayFileKeywords": "",
+        "danmu":"1"
+  },	
 {
 		"key": "wogg",
 		"name": "🧸玩偶┃网盘",
