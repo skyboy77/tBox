@@ -29,20 +29,6 @@
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
 	},{
-		"key": "mogg",
-		"name": "木偶哥哥(UC)",
-		"type": 5,
-		"searchable": 1,
-		"filterClass": "",
-		"firstClass": "",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/mogg.js",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": "",
-		"selectedPlayer": "0"
-	},{
 		"key": "labi",
 		"name": "蜡笔网盘",
 		"type": 5,
@@ -66,20 +52,6 @@
 		"filterPlay": "",
 		"firstPlay": "夸克网盘,夸克网盘2",
 		"ext": "https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/mihdr.js",
-		"flagable": 0,
-		"filterPlayFileKeywords": "",
-		"keepPlayFileKeywords": "",
-		"selectedPlayer": "0"
-	},{
-		"key": "xiaomi",
-		"name": "小米网盘",
-		"type": 5,
-		"searchable": 1,
-		"filterClass": "",
-		"firstClass": "",
-		"filterPlay": "",
-		"firstPlay": "",
-		"ext": "https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/js/xiaomi.js",
 		"flagable": 0,
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
