@@ -28,6 +28,21 @@
 		"keepPlayFileKeywords": "",
         "recommend": "1"
 	},
+{
+    "key": "bdbd",
+    "name": "⚡️缘觉┃直连",
+    "type": 5,
+    "searchable": 0,
+    "filterClass": "",
+    "firstClass": "",
+    "filterPlay": "",
+    "firstPlay": "",
+    "ext": "https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/newjs/bd.js",
+    "flagable": 0,
+    "filterPlayFileKeywords": "",
+    "keepPlayFileKeywords": "",
+    "selectedPlayer": "0"
+  },	
    {
     "key": "zonghedanmu1",
     "name": "☄️┃综合┃弹幕1",
@@ -389,7 +404,23 @@
 		"filterPlayFileKeywords": "",
 		"keepPlayFileKeywords": "",
 		"selectedPlayer": "0"
-	}],
+	},
+{
+    "key": "wpts",
+    "name": "📲网盘┃推送",
+    "type": 5,
+    "searchable": 0,
+    "filterClass": "",
+    "firstClass": "",
+    "filterPlay": "",
+    "firstPlay": "",
+    "ext": "https://ghproxy.cn/https://raw.githubusercontent.com/leevi0709/tBox/refs/heads/main/newjs/网盘推送.js",
+    "flagable": 0,
+    "filterPlayFileKeywords": "",
+    "keepPlayFileKeywords": "",
+    "selectedPlayer": "0"
+  }	
+	],
 	"parses": [{
 		"name": "解析1",
 		"type": 1,
